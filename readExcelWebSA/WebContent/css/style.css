@@ -1,0 +1,15 @@
+.carousel-img {
+  width: auto;
+  height: 600px;
+  max-height: 600px;
+}
+.conjuntoError{
+	color: rgba(222, 21, 21, 1);
+	font-size: 1em;
+	font-weight: bold;
+	left: -2em;
+	position: relative;
+}
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}

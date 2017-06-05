@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/08/2014 14:52:44 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gefa.model.GefaAlta" table="gefa_alta" catalog="gefa">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="tipologDificultadDistintos" type="string">
+            <column name="TipologDificultadDistintos" length="10" />
+        </property>
+        <property name="codInterno" type="string">
+            <column name="CodInterno" length="45" />
+        </property>
+        <property name="codPpm" type="string">
+            <column name="CodPPM" length="45" />
+        </property>
+        <property name="codAdicional" type="string">
+            <column name="CodAdicional" length="45" />
+        </property>
+        <property name="nombreDeProyecto" type="string">
+            <column name="NombreDeProyecto" length="100" />
+        </property>
+        <property name="entrega" type="string">
+            <column name="Entrega" length="45" />
+        </property>
+        <property name="codFactoria" type="string">
+            <column name="CodFactoria" length="45" />
+        </property>
+        <property name="factoria" type="string">
+            <column name="Factoria" length="45" />
+        </property>
+        <property name="tecnologia" type="string">
+            <column name="Tecnologia" length="45" />
+        </property>
+        <property name="subproyecto" type="string">
+            <column name="Subproyecto" length="100" />
+        </property>
+        <property name="nombreComponente" type="string">
+            <column name="NombreComponente" length="200" />
+        </property>
+        <property name="programaNuevoModificado" type="string">
+            <column name="ProgramaNuevoModificado" length="10" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="50" />
+        </property>
+        <property name="fechaRealCfgFactDisenio" type="date">
+            <column name="FechaRealCfgFactDisenio" length="10" not-null="true" />
+        </property>
+        <property name="fechaPrevistaFactCgfsoftware" type="date">
+            <column name="FechaPrevistaFactCGFSoftware" length="10" />
+        </property>
+        <property name="fechaNegociadaFactCgfSoftware" type="date">
+            <column name="FechaNegociadaFactCgfSoftware" length="10" />
+        </property>
+        <property name="fechaRealFactCgfsoftware" type="date">
+            <column name="FechaRealFactCgfsoftware" length="10" />
+        </property>
+        <property name="tipologiaInicial" type="string">
+            <column name="TipologiaInicial" length="45" />
+        </property>
+        <property name="difIni" type="string">
+            <column name="DifIni" length="5" />
+        </property>
+        <property name="costeIni" type="java.lang.Double">
+            <column name="CosteIni" precision="22" scale="0" />
+        </property>
+        <property name="horasIni" type="java.lang.Double">
+            <column name="HorasIni" precision="22" scale="0" />
+        </property>
+        <property name="tipologiaFactorias" type="string">
+            <column name="TipologiaFactorias" length="100" />
+        </property>
+        <property name="difFact" type="string">
+            <column name="DifFact" length="5" />
+        </property>
+        <property name="costeFact" type="java.lang.Double">
+            <column name="CosteFact" precision="22" scale="0" />
+        </property>
+        <property name="horasFact" type="java.lang.Double">
+            <column name="HorasFact" precision="22" scale="0" />
+        </property>
+        <property name="divisa" type="string">
+            <column name="Divisa" length="45" />
+        </property>
+        <property name="comentariosTipoficacionFactoria" type="string">
+            <column name="ComentariosTipoficacionFactoria" />
+        </property>
+        <property name="comentariosTipoficacionProyecto" type="string">
+            <column name="ComentariosTipoficacionProyecto" />
+        </property>
+        <property name="estadoTipificacion" type="string">
+            <column name="EstadoTipificacion" length="20" />
+        </property>
+        <property name="factSn" type="string">
+            <column name="FactSN" length="10" />
+        </property>
+        <property name="mesFact" type="string">
+            <column name="MesFact" length="15" />
+        </property>
+        <property name="anioFact" type="string">
+            <column name="AnioFact" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="Observaciones" />
+        </property>
+        <property name="metCal" type="string">
+            <column name="MetCal" length="10" />
+        </property>
+        <property name="codPresupuestario" type="string">
+            <column name="CodPresupuestario" length="45" />
+        </property>
+        <property name="responsableEjecucionPep" type="string">
+            <column name="ResponsableEjecucionPep" length="45" />
+        </property>
+        <property name="sociedadDelPep" type="string">
+            <column name="SociedadDelPep" length="45" />
+        </property>
+        <property name="fechaLibFact" type="date">
+            <column name="FechaLibFact" length="10" />
+        </property>
+        <property name="pmredmine" type="java.lang.Integer">
+            <column name="PMRedmine" />
+        </property>
+        <property name="f013" type="string">
+            <column name="F013" length="200" />
+        </property>
+        <property name="fechaAlta" type="date">
+            <column name="FechaAlta" length="10" />
+        </property>
+        <property name="fechaMod" type="date">
+            <column name="FechaMod" length="10" />
+        </property>
+        <property name="fechaBaja" type="date">
+            <column name="FechaBaja" length="10" />
+        </property>
+        <property name="nombreArchivoCarga" type="string">
+            <column name="NombreArchivoCarga" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/08/2014 15:01:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gefa.model.GefaModificaciones" table="gefa_modificaciones" catalog="gefa">
+        <id name="n" type="int">
+            <column name="N" />
+            <generator class="assigned" />
+        </id>
+        <property name="codInterno" type="string">
+            <column name="CodInterno" length="100" />
+        </property>
+        <property name="codPpm" type="string">
+            <column name="CodPPM" length="45" />
+        </property>
+        <property name="codAdicional" type="string">
+            <column name="CodAdicional" length="45" />
+        </property>
+        <property name="nombrePpm" type="string">
+            <column name="NombrePpm" length="45" />
+        </property>
+        <property name="factoria" type="string">
+            <column name="Factoria" length="45" />
+        </property>
+        <property name="tecnologia" type="string">
+            <column name="Tecnologia" length="20" />
+        </property>
+        <property name="subproyecto" type="string">
+            <column name="Subproyecto" length="100" />
+        </property>
+        <property name="nombreDelComponente" type="string">
+            <column name="NombreDelComponente" length="45" />
+        </property>
+        <property name="entregaAsociada" type="string">
+            <column name="EntregaAsociada" length="9" />
+        </property>
+        <property name="modificacionEnVuelo" type="string">
+            <column name="ModificacionEnVuelo" length="2" />
+        </property>
+        <property name="modificacionYaRealizadaPorDyD" type="string">
+            <column name="ModificacionYaRealizadaPorDyD" length="2" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="10" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" length="100" />
+        </property>
+        <property name="fechaEnvio" type="timestamp">
+            <column name="FechaEnvio" length="19" />
+        </property>
+        <property name="fprevistaFinalizacion" type="timestamp">
+            <column name="FPrevistaFinalizacion" length="19" />
+        </property>
+        <property name="fechaRenegociada" type="timestamp">
+            <column name="FechaRenegociada" length="19" />
+        </property>
+        <property name="fechaCierre" type="timestamp">
+            <column name="FechaCierre" length="19" />
+        </property>
+        <property name="comentariosModificacion" type="string">
+            <column name="ComentariosModificacion" length="45" />
+        </property>
+        <property name="tipologia" type="string">
+            <column name="Tipologia" length="30" />
+        </property>
+        <property name="difIni" type="string">
+            <column name="DifIni" length="10" />
+        </property>
+        <property name="costeIni" type="java.lang.Double">
+            <column name="CosteIni" precision="22" scale="0" />
+        </property>
+        <property name="horasIni" type="java.lang.Double">
+            <column name="HorasIni" precision="22" scale="0" />
+        </property>
+        <property name="difFact" type="string">
+            <column name="DifFact" length="10" />
+        </property>
+        <property name="costeFact" type="java.lang.Double">
+            <column name="CosteFact" precision="22" scale="0" />
+        </property>
+        <property name="horasFact" type="java.lang.Double">
+            <column name="HorasFact" precision="22" scale="0" />
+        </property>
+        <property name="divisa" type="string">
+            <column name="Divisa" length="3" />
+        </property>
+        <property name="comentariosTipificacionFactoria" type="string">
+            <column name="ComentariosTipificacionFactoria" length="45" />
+        </property>
+        <property name="comentariosTipificacionProyecto" type="string">
+            <column name="ComentariosTipificacionProyecto" length="45" />
+        </property>
+        <property name="estadoTipificacion" type="string">
+            <column name="EstadoTipificacion" length="20" />
+        </property>
+        <property name="factSn" type="string">
+            <column name="FactSN" length="2" />
+        </property>
+        <property name="mesFact" type="string">
+            <column name="MesFact" length="10" />
+        </property>
+        <property name="anioFact" type="string">
+            <column name="AnioFact" length="4" />
+        </property>
+        <property name="codPresupuestario" type="string">
+            <column name="CodPresupuestario" length="20" />
+        </property>
+        <property name="sociedadDelPep" type="string">
+            <column name="SociedadDelPep" length="45" />
+        </property>
+        <property name="responsableEjecucionPep" type="string">
+            <column name="ResponsableEjecucionPep" length="45" />
+        </property>
+        <property name="prioridadUsuario" type="string">
+            <column name="PrioridadUsuario" length="5" />
+        </property>
+        <property name="usuarioPeticionario" type="string">
+            <column name="UsuarioPeticionario" length="45" />
+        </property>
+        <property name="origen" type="string">
+            <column name="Origen" length="45" />
+        </property>
+        <property name="responsableResolucion" type="string">
+            <column name="ResponsableResolucion" length="30" />
+        </property>
+        <property name="numErrorAsociado" type="java.lang.Integer">
+            <column name="NumErrorAsociado" />
+        </property>
+        <property name="tieneModEnVueloAsociadas" type="string">
+            <column name="TieneModEnVueloAsociadas" length="2" />
+        </property>
+        <property name="ndeModAsociada" type="string">
+            <column name="NDeModAsociada" length="45" />
+        </property>
+        <property name="rutaDeRed" type="string">
+            <column name="RutaDeRed" length="500" />
+        </property>
+        <property name="ndePeticionSoloHost" type="java.lang.Integer">
+            <column name="NDePeticionSoloHost" />
+        </property>
+        <property name="fechaLibFact" type="timestamp">
+            <column name="FechaLibFact" length="19" />
+        </property>
+        <property name="fechaAlta" type="date">
+            <column name="FechaAlta" length="10" />
+        </property>
+        <property name="fechaMod" type="date">
+            <column name="FechaMod" length="10" />
+        </property>
+        <property name="fechaBaja" type="date">
+            <column name="FechaBaja" length="10" />
+        </property>
+        <property name="nombreArchivoCarga" type="string">
+            <column name="NombreArchivoCarga" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>
