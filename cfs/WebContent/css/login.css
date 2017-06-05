@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+div.fila {
+	overflow: visible;
+	width: 98%;
+	min-height: 30px;
+}
+
+div.col_titulo { 
+	padding: 2px;
+	padding-bottom: 10px;
+	background: #FFFFFF;
+	border-style: none;
+	font-family: Arial, sans-serif;
+	font-size: 11pt;
+	font-weight: bold;
+	color: #00529B;
+	height: 100%;
+	overflow: visible;
+	witdh: 98%;
+}
+
+div.fila div.col_label {
+	float: left;
+	padding: 1px;
+	padding-left: 10px;
+	padding-right: 10px;
+	/*width: 30%;*/
+	text-align: right;
+	vertical-align: middle;
+	/*Agregado JM - 05.05.2011*/
+	margin-top: 1.5px;
+	/*overflow: visible;*/
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	color: #00529B;
+}
+
+div.fila div.col_input {
+	float: left;
+	padding: 1px;
+	/*overflow: visible;*/
+	/*font-family: Arial, sans-serif;
+	font-size: 10pt;
+	color: #00529B;*/
+}
+
+div.mainTop {
+	font-family: Arial, sans-serif;
+	font-size: 14pt;
+	color: #00529B;
+}
+
+label,select,.ui-select-menu {
+	float: left;
+	margin-right: 10px;
+}

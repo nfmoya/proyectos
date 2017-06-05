@@ -1,0 +1,132 @@
+/* Referencia para armar lo que va dentro de #contenido */
+/*    #contenido {*/
+/*        background-color: white;*/
+/*        float:left;*/
+/*        width:800px;*/
+/*        height:380;*/
+/*        height: 100%;*/
+/*        min-height:500px;*/
+/*        padding-left: 10px;*/
+/*        padding-top: 10px;*/
+/*        overflow: visible;*/
+/*    }*/
+
+.mainTop, .mainMiddle, .mainBottom {
+	background-color: white;
+	padding-top: 10px;
+	padding-left: 10px;
+	width: 98%;
+	overflow: visible;
+}
+
+.mainTop { min-height: 50px; }
+
+.mainTop .encabezado{ width: 100%; }
+
+.mainTop .encabezado h2.titulo_bienvenida {
+	font-family: Gill Sans, Verdana;
+	font-size: 16px;
+	line-height: 19px;
+	text-transform: none;
+	letter-spacing: 7px;
+	font-weight: bold;
+}
+
+.mainTop .encabezado h2.titulo_bienvenida_1 {
+	/*	font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;*/
+	/*font-size: 10pt; */
+	font-family: Arial, sans-serif;
+	color: #4297D7;
+	font-weight: normal;
+	font-size: 1.75em;
+	letter-spacing: .2em;
+	line-height: 1.1em;
+	margin:0px;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.mainMiddle {
+	min-height: 200px;
+	overflow: visible;
+}
+
+.mainMiddle .alertas {
+	border: 1px solid #dadada; 
+	width: 65%;
+	float: left;
+	padding: 5px;
+	overflow: visible;
+}
+
+/*
+table { border-collapse: collapse; border-spacing:0; }
+
+table.taskmessages { width: 500px; }
+
+.taskmessages {font: 11px Arial, Helvetica, sans-serif; margin:10px 0;}
+
+.taskmessages td {
+	border-bottom: 1px solid #CCCCCC;
+	color: #666666;
+	line-height: 16px;
+	padding: 2px 10px;
+}
+*/
+.mainMiddle .calendar {
+	width: 30%;
+	float: right;
+}
+
+.mainBottom .listaNoticias {
+	/* Se establece la property para los cuatro lados */
+	/*	padding: 10px; */
+	overflow: visible;
+}
+
+.mainBottom .listaNoticias .nota {
+	float: left;
+	width: 100%;
+	padding: 0px 200px 5px 5px;
+	/*background: none repeat scroll 0 0 #C6DBFF;*/
+	/*background: none repeat scroll 0 0 #E8EEF7;*/
+	background: url("images/ui-bg_glass_85_dfeffc_1x400.png") repeat-x scroll 50% 50% #DFEFFC;
+	/*width: 320px;*/
+}
+
+/*.listaNoticias .nota a.informacion { text-decoration:none; }
+.listaNoticias .nota a.informacion:hover{ text-decoration: none!important;}
+*/
+.listaNoticias .nota h2{
+	font-family:Georgia,serif;
+	color:#4E443C;
+	font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0;
+}
+/*.listaNoticias .nota h2:hover {	text-decoration:underline!important; }*/
+
+.listaNoticias .nota p {
+	font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 14px;
+	margin-top: .5em; color: #666;
+}
+
+/* Otros estilos */
+h2.titulo {
+	font-family: Gill Sans, Verdana;
+	font-size: 11px;
+	line-height: 14px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
+
+p.paragraph {
+	font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 14px;
+	margin-top: .5em; color: #666;
+	/*
+	background: none repeat scroll 0 0 #E8EEF7;
+    border-collapse: collapse;
+    color: #000000;*/
+    /*font: 11px Arial,Helvetica,sans-serif;*/
+}

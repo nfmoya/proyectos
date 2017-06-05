@@ -1,0 +1,13 @@
+
+/* Checkbox
+----------------------------------*/
+.ui-checkbox { position: relative; margin-top:.5em; font-weight:normal;}
+/*.ui-checkbox { position: relative; margin-top:.3em; font-weight:normal;}*/
+.ui-checkbox .ui-checkbox-inputwrapper { width: 0; height: 0; overflow: hidden; }
+.ui-checkbox label { display: block; position: relative; padding-right: 1em; line-height: 1; padding: 0 0 .2em 2em; margin: .3em 0 0 .1em; cursor: pointer; z-index: 1; color:#555555; }
+/*.ui-checkbox label { display: block; position: relative; padding-right: 1em; line-height: 1; padding: .5em 0 .5em 3em; margin: 0 0 .3em; cursor: pointer; z-index: 1; color:#555555; }*/
+.ui-checkbox label:hover{ color:#212121;}
+.ui-checkbox .ui-checkbox-box { position: absolute; top: 0; left: 0; width: 1.5em; height: 1.6em; }
+
+.ui-checkbox .ui-state-highlight, .ui-widget-content .ui-checkbox .ui-state-highlight, .ui-widget-header .ui-checkbox .ui-state-highlight  {border: 1px solid #FFD27A; background: #FBEDD0 url(images/ui-bg_glass_55_fbedd0_1x400.png) 50% 50% repeat-x; color: #363636; }
+.ui-checkbox .ui-state-highlight .ui-icon {background-image: url(images/ui-icons_ef8c08_256x240.png); }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+	<jdbc-transaction name="ABMC_USUARIO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_ABMC_Usuarios">
+			<input-parameter name="pi_id_opcion" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_id_usuario" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_des_usuario" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_id_perfil" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_d_nombre" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_d_apellido" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_d_sector" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_clave_defecto" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_id_usua_modi" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="id_usuario" javaTypeName="java.lang.Long" /> 
+				<column-attribute-mapping attribute="d_user" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="id_perfil" javaTypeName="java.lang.Long" />
+				<column-attribute-mapping attribute="perfil_name" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="d_nombre" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="d_apellido" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_SECTOR" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_SECTOR" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_CORREO" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+</transaction-list>

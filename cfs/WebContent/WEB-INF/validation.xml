@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<!-- Para más información acerca de tipos de validadores ir a: 
+http://.../struts-1.3.10/docs/faqs/validator.html -->
+<form-validation>
+	<formset>
+		<form name="assignDestinoForm">
+			<field property="piezaId" depends="required,longRange">
+				<arg position="0" key="assignDestinoForm.pieza.caption"/>
+        		<arg position="1" name="longRange" key="${var:min}" resource="false"/>
+        		<arg position="2" name="longRange" key="${var:max}" resource="false"/>
+        		<var>
+        			<var-name>min</var-name>
+        			<var-value>1</var-value>
+        		</var>
+        		<var>
+        			<var-name>max</var-name>
+        			<var-value>99999999</var-value>
+        		</var>
+			</field>
+			<field property="destinoId" depends="required,longRange">
+				<arg position="0" key="assignDestinoForm.destino.caption"/>
+        		<arg position="1" name="longRange" key="${var:min}" resource="false"/>
+        		<arg position="2" name="longRange" key="${var:max}" resource="false"/>
+        		<var>
+        			<var-name>min</var-name>
+        			<var-value>1</var-value>
+        		</var>
+        		<var>
+        			<var-name>max</var-name>
+        			<var-value>99999999</var-value>
+        		</var>
+			</field>
+			<field property="comentario" depends="required">
+				<arg position="0" key="assignDestinoForm.comentario.caption"/>
+			</field>
+		</form>
+		<form name="ongForm">
+			<field property="name" depends="required">
+				<arg position="0" key="institutionForm.name.caption"/>
+			</field>
+			<field property="cuit" depends="required,maxlength">
+				<arg key="institutionForm.cuit.caption" />
+			 	<arg name="maxlength" key="${var:maxlength}" resource="false"/>
+				<var><var-name>maxlength</var-name><var-value>11</var-value></var>
+			</field>
+			<field property="email" depends="email">
+				<arg position="0" key="tabs.contact.email.label"/>
+			</field>
+			<field property="clientNumber" depends="required,longRange">
+				<arg position="0" key="institutionForm.clientNumber.caption"/>
+        		<arg position="1" name="longRange" key="${var:min}" resource="false"/>
+        		<arg position="2" name="longRange" key="${var:max}" resource="false"/>
+        		<var>
+        			<var-name>min</var-name>
+        			<var-value>1</var-value>
+        		</var>
+        		<var>
+        			<var-name>max</var-name>
+        			<var-value>99999999</var-value>
+        		</var>
+			</field>
+			<field property="phones" depends="required">
+				<arg position="0" key="tabs.contact.phone.label"/>
+			</field>
+		</form>
+		<form name="commonPeriodForm">
+			<field property="startDate" depends="required">
+				<arg position="0" key="periodEvaluationForm.startDate.caption" />
+			</field>
+			<field property="endDate" depends="required">
+				<arg position="0" key="periodEvaluationForm.endDate.caption" />
+			</field>
+			<field property="description" depends="required">
+				<arg position="0" key="periodEvaluationForm.description.caption" />
+			</field>
+		</form>
+		<form name="periodEvaluationForm" extends="commonPeriodForm">
+			<field property="ultimoPeriodo" depends="required">
+				<arg position="0" key="periodEvaluationForm.ultimoPeriodo.caption" />
+			</field>
+		</form>
+		<form name="periodSurrenderForm" extends="commonPeriodForm">
+			<field property="surrenderDate" depends="required">
+				<arg position="0" key="periodSurrenderForm.surrenderDate.caption" />
+			</field>
+		</form>
+		<form name="newsForm">
+			<field property="titulo" depends="required">
+				<arg position="0" key="newsForm.titulo.caption" />
+			</field>
+			<field property="copete" depends="required,maxlength">
+				<arg key="newsForm.copete.caption" />
+				<arg name="maxlength" key="${var:maxlength}" resource="false"/>
+				<var><var-name>maxlength</var-name><var-value>1500</var-value></var>
+			</field>
+			<field property="cuerpo" depends="required,maxlength">
+				<arg key="newsForm.cuerpo.caption" />
+				<arg name="maxlength" key="${var:maxlength}" resource="false"/>
+				<var><var-name>maxlength</var-name><var-value>1500</var-value></var>
+			</field>
+			<field property="vigenciaFrom" depends="required">
+				<arg position="0" key="newsForm.vigenciaFrom.caption" />
+			</field>			
+			<field property="vigenciaTo" depends="required">
+				<arg position="0" key="newsForm.vigenciaTo.caption" />
+			</field>
+		</form>
+		<form name="scholarshipsTypeForm">
+			<field property="description" depends="required">
+				<arg position="0" key="scholarshipsTypeForm.description.caption" />
+			</field>
+		</form>
+		<form name="scholarshipsTypeDetailForm">
+			<field property="scholarshipsAmount" depends="required,validwhen">
+				<arg key="scholarshipsTypeDetailForm.scholarshipsAmount.caption" />
+				<var>  
+					<var-name>test</var-name>
+					<var-value>(*this* != 0)</var-value>
+				</var>
+			</field>
+			<field property="vigenciaFrom" depends="required">
+				<arg position="0" key="scholarshipsTypeDetailForm.vigenciaFrom.caption" />
+			</field>
+		</form>
+		<form name="applicantForm">
+			<field property="personaId" depends="required">
+				<arg position="0" key="applicantForm.personaId" />
+			</field>
+			<field property="idTutorPed" depends="required">
+				<arg position="0" key="applicantForm.idTutorPed" />
+			</field>
+			<field property="idTutorAdmin" depends="required">
+				<arg position="0" key="applicantForm.idTutorAdmin" />
+			</field>
+			<!--<field property="familiares" depends="mask">
+				<msg name="mask" key="errors.newRequired"/>
+				<arg position="0" key="applicantForm.titularOResponsable"/>
+				<var>  
+					<var-name>mask</var-name>
+					<var-value>^[\w,|]*S{1}[\w,|]*$</var-value>
+				</var>
+			</field>
+		--></form>
+		<form name="rechargeGenForm">
+			<field property="rechargeDate" depends="required">
+				<arg position="0" key="rechargeGenForm.rechargeDate" />
+			</field>
+		</form>
+		<form name="rechargeLotForm">
+			<field property="selectedPeriodId" depends="required,validwhen">
+				<arg key="label.period.caption" />
+				<var>  
+					<var-name>test</var-name>
+					<var-value>(*this* != 0)</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="secondRechargeLotForm" extends="rechargeLotForm" />
+	</formset>
+</form-validation>

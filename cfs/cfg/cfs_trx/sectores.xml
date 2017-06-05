@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+	<jdbc-transaction name="ABMC_SECTOR"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_ABMC_Sectores">
+			<input-parameter  name="pi_id_opcion"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_SECTOR"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_SECTOR"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_SECTORABREV"    sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_SECTOR_ALT"     sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_ST_HABILITADO"     sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_USU_MODI"          sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"           sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"           sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="CD_SECTOR"         javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="NB_SECTOR"         javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_SECTORABREV"    javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_SECTOR_ALT"     javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_HABILITADO"     javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+</transaction-list>
+

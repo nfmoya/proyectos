@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+
+<transaction-list>
+
+	<jdbc-transaction name="GET_TASK_MESSAGES_BY_USER" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_consulta_mensajes">
+			<input-parameter name="pi_id_usuario" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+            <output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean">
+				<column-attribute-mapping attribute="id_aviso" javaTypeName="java.lang.Integer" />
+				<column-attribute-mapping attribute="emisor_mensaje" javaTypeName="java.lang.Integer" />
+				<column-attribute-mapping attribute="f_envio" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="x_cuerpo_mensaje" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="c_asunto" javaTypeName="java.lang.Integer" /> 
+                <column-attribute-mapping attribute="desc_asunto" javaTypeName="java.lang.String" />				
+			</output-parameter>			
+		</statement-call>
+	</jdbc-transaction>
+
+	<jdbc-transaction name="GET_NEWS_LIST_TO_WELCOME_PAGE"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_cons_noticia_bienvenida">
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean">
+				<column-attribute-mapping attribute="id_noticia" javaTypeName="java.lang.Long" />
+				<column-attribute-mapping attribute="x_titulo" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="x_copete" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="x_cuerpo_mensaje" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="f_vigencia_desde" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="f_vigencia_hasta" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="GET_NEWS_BY_ID" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_consulta_noticia">
+			<input-parameter name="pi_id_noticia" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean">
+				<column-attribute-mapping attribute="x_titulo" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="x_copete" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="x_cuerpo_mensaje" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="f_vigencia_desde" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="f_vigencia_hasta" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="f_baja" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+</transaction-list>

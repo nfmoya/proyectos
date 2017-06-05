@@ -1,0 +1,75 @@
+table.taskmessages { 
+	/**font: 0.8em Arial, Helvetica, sans-serif;*/
+	font: 11px Arial, Helvetica, sans-serif;
+	border-collapse:collapse;
+	background:#e8eef7;
+	color:#000;
+	}
+#itsthetable > table.taskmessages {width:99%;}
+#itsthetable {
+	/**height:350px;*/
+	overflow:visible;
+	background:#c6dbff; 
+	padding-bottom:3px;
+	}
+.taskmessages caption {
+	font: inherit;
+	font-size: 12px !important;
+	/**height:102px;*/
+	height:30px;
+	/**font-size:000000.1em;*/
+	/**color:#c6dbff;*/
+	/**background:#c6dbff url("caption.gif") left top  no-repeat;*/
+	}
+/*
+.taskmessages caption:hover{ 
+	font-size:000000.1em; 
+	color:#c6dbff;
+	/**background:transparent url("caption.gif") center bottom no-repeat;*/
+	}*/
+.taskmessages th {font-weight:300;}
+.taskmessages tr th, .taskmessages tr td {border-bottom:1px solid #ccc;}
+table.taskmessages a, table.taskmessages a:link {text-decoration:none; color:#666;}
+table.taskmessages a:visited {color:#999;} 
+table.taskmessages a:hover {color:#f00; background:#fafafa; display:block;} 
+.taskmessages tbody tr th  {
+	width:80px;
+	vertical-align:top;
+	padding-left: 50px; 
+	/**background:transparent url("det1gmail.gif") left top no-repeat;*/
+	}
+.taskmessages tbody tr td  {
+	height:1.7em;
+	vertical-align:top;
+	padding-left:10px; 
+	/*background:transparent url("det2gmail.gif") left top no-repeat;*/ 
+	}
+.taskmessages thead { background:#fff;}
+tr th + td + td + td + td {
+	width:60px; 
+	padding-left:20px;
+	font-size:0.9em; 
+	/**background:transparent url("det3gmail.gif") 0 0  no-repeat;*/
+	} 
+.taskmessages tr.odd th + td + td + td + td {
+	width:60px; 
+	padding-left:20px;
+	font-size:0.9em; 
+	background:none;
+	} 
+.taskmessages tfoot th, .taskmessages tfoot td {
+	/**height:105px;*/
+	height:30px;
+	font-weight:bold; 
+	height:2.0em; 
+	padding-left:10px; 
+	vertical-align: top;
+	}
+.taskmessages tfoot th{
+	height:30px;
+	/**background:#c6dbff url("footerth.gif") right top no-repeat; */
+	}
+.taskmessages tfoot td {
+	/*height:102px;
+	background:#c6dbff url("footertd.gif") left top no-repeat; */
+	}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE samx-ds-global-factory PUBLIC "-//Service Access Manager//DTD Service Access Manager Ext Configuration//EN" "samx-ds-config.dtd">
+
+<samx-ds-global-factory>
+
+     <dbcp-driver-datasource-factory 
+                  name="BDCFS" 
+                  instance="DSDESA02" 
+               	  poolPropFile="${realpath}/../syscfg/gral.DBCP.properties"
+                  usePasswordCipher="false" 
+                  driverPropFile="${realpath}/../syscfg/dbcfs.properties" />
+                  
+	<dbcp-driver-datasource-factory 
+                  name="BDSECURITY" 
+                  instance="DSDESA02" 
+               	  poolPropFile="${realpath}/../syscfg/gral.DBCP.properties"
+                  usePasswordCipher="false" 
+                  driverPropFile="${realpath}/../syscfg/dbsecurity.properties" />
+     
+</samx-ds-global-factory>
+

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+	<jdbc-transaction name="ABMC_PROVEEDOR"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_ABMC_Proveedores">
+			<input-parameter  name="pi_id_opcion"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PROVEEDOR"      sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_PROVEEDOR"      sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_PROVEEDORCORTO" sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NU_CUIT"           sqlTypeName="NUMERIC" />
+			<input-parameter  name="pi_NB_ATRIBUTOPROV1"  sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_ATRIBUTOPROV2"  sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_ATRIBUTOPROV3"  sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_ATRIBUTOPROV4"  sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_ATRIBUTOPROV5"  sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_ST_HABILITADO"     sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_USU_MODI"          sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"           sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"           sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="CD_PROVEEDOR"      javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="NB_PROVEEDOR"      javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="NB_PROVEEDORCORTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NU_CUIT"           javaTypeName="java.lang.Number" />
+				<column-attribute-mapping attribute="NB_ATRIBUTOPROV1"  javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_ATRIBUTOPROV2"  javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_ATRIBUTOPROV3"  javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_ATRIBUTOPROV4"  javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_ATRIBUTOPROV5"  javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_HABILITADO"     javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="ABMC_PROVEEDOR_PERIODO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_ABMC_ProveedoresPeriodos">
+			<input-parameter  name="pi_id_opcion"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PROVEEDOR"      sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PERIODOFACT"    sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NB_PERIODOFACT"    sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PERFACTALT"     sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_FH_DESDE"          sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_FH_HASTA"          sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_ST_ESTADO"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_USU_MODI"          sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"           sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"           sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="CD_PROVEEDOR"    javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_PERIODOFACT"  javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="NB_PERIODOFACT"  javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PERFACTALT"   javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="FH_DESDE"        javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="FH_HASTA"        javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_ESTADO"       javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+
+	<jdbc-transaction name="ABMC_PROVEEDOR_VALOR"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_ABMC_ProveedoresValores">
+			<input-parameter  name="pi_id_opcion"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PROVEEDOR"      sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PERIODOFACT"    sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_UNIVAL"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NU_VALBRUTOUNIVAL" sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NU_VALNETOUNIVAL"  sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_ST_HABILITADO"     sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_USU_MODI"          sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"           sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"           sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="CD_PROVEEDOR"       javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_PERIODOFACT"     javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_UNIVAL"          javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="NU_VALBRUTOUNIVAL"  javaTypeName="java.lang.Number" />
+				<column-attribute-mapping attribute="NU_VALNETOUNIVAL"   javaTypeName="java.lang.Number" />
+				<column-attribute-mapping attribute="ST_HABILITADO"      javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONSULTA_PERIODO_DH"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_PeriodoDesdeHasta">
+			<input-parameter  name="pi_CD_PROVEEDOR"      sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PER_DESDE"      sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PER_HASTA"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />	
+			<output-parameter name="po_c_error"           sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"           sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="CD_PERIODOFACT"     javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_PERIODOFACT"     javaTypeName="java.lang.String" /> 
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+
+	
+	
+	<jdbc-transaction name="ABMC_PROVEEDOR_TIPOCAMBIO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_ABMC_ProveedoresTipoCambio">
+			<input-parameter  name="pi_id_opcion"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PROVEEDOR"      sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_PERIODOFACT"    sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_CD_MONEDA"         sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_NU_DIAS"           sqlTypeName="VARCHAR" />	
+			<input-parameter  name="pi_CD_COTIZACION"     sqlTypeName="VARCHAR" />						
+			<input-parameter  name="pi_ST_HABILITADO"     sqlTypeName="VARCHAR" />
+			<input-parameter  name="pi_USU_MODI"          sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"           sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"           sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="CD_PROVEEDOR"    javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_PERIODOFACT"  javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_MONEDA"       javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NU_DIAS"         javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_COTIZACION"   javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_HABILITADO"   javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>	
+</transaction-list>
+

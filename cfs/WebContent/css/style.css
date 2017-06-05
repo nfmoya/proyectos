@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+/*TODO: CAMBIAR NOMBRE Y AGRUPADO*/
+	.titulo1 {
+		font-size: 20pt; 
+		font-family: Verdana; 
+		font-style:bold;
+		color: #4297D7;
+    }
+    
+    .titulo2 {
+		font-size: 18pt; 
+		font-family: Verdana; 
+		font-style:bold;
+		color: #4297D7;
+    }
+    
+    .titulo3 {
+		font-size: 16pt; 
+		font-family: Verdana; 
+		font-style:bold;
+		color: #4297D7;
+    }
+    
+    .subtitulo1 {
+		font-size: 20pt; 
+		font-family: Verdana; 
+		color: #4297D7;
+    }
+    
+    .subtitulo2 {
+		font-size: 18pt; 
+		font-family: Verdana; 
+		color: #4297D7;
+    }
+    
+    .subtitulo3 {
+		font-size: 16pt; 
+		font-family: Verdana; 
+		color: #4297D7;
+    }
+    
+    .descripcion1 {
+		font-size: 12pt; 
+		font-family: Verdana; 
+		color: #4297D7;
+    }
+    
+    .descripcion2 {
+		font-size: 11pt; 
+		font-family: Verdana; 
+		color: #4297D7;
+    }
+    
+    .descripcion3 {
+		font-size: 10pt; 
+		font-family: Verdana; 
+		color: #4297D7;
+    }
+ 
+ 
+/**TODO bsilvestre: Hacer que fondo del cada día que si tenga un evento tenga un color para diferenciarlo del resto */ 
+ .specialDate_task_p { background-color: blue; border: #c5dbec !important; }
+ .specialDate_task_p a, .specialDate_task_p a:link, .specialDate_task_p a:visited .specialDate_task_p a:hover  { background-color: blue !important; border: #c5dbec !important; }
+ .specialDate_task_a { background-color: white !important; border: #c5dbec !important; }
+ .specialDate_task_a a, .specialDate_task_a a:link, .specialDate_task_a a:visited .specialDate_task_a a:hover  { background-color: green !important; border: #c5dbec !important; }
+ .specialDate_task_m{ background-color: red; border: #c5dbec !important; } 
+ .specialDate_task_m a, .specialDate_task_m a:link, .specialDate_task_m a:visited .specialDate_task_m a:hover  { background-color: red !important; border: #c5dbec !important; }
+ span.style { margin-left: 18px; }
+ 
+div.gridContainer { padding-left: 10px; padding-bottom: 10px; }
+ div.responseMessage {display:none; overflow:auto !important;}
+ 
+table.rendicion tfoot td {
+	text-align : right !important;
+ 	font-weight: bold;
+	font-style: italic;
+	text-decoration: underline; 
+}
+table.rendicion tfoot td input.left, table.rendicion tbody td input.left { text-align: left; }
+table.rendicion tfoot td input, table.rendicion tbody td input { text-align: right; }
+ 

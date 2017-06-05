@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-manager PUBLIC "-//Service Access Manager//DTD Transaction Manager Configuration//EN" "tm-config.dtd">
+
+<transaction-manager>
+	<import-transactions folder="${sam.cfgs}/security_trx" extension="xml" />
+
+	<convertion-manager classname="ar.com.itrsa.sam.converter.ConverterManagerImpl"></convertion-manager>
+</transaction-manager>

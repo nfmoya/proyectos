@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+                               "struts-config_1_3.dtd">
+<struts-config>
+	<!-- ========== Form Bean Definitions =================================== -->
+	<form-beans>
+		<form-bean name="actionForm" type="org.apache.struts.action.DynaActionForm" />
+		<form-bean name="loginForm" type="com.bbva.cfs.commons.form.LoginForm" />
+		<form-bean name="welcomeForm" type="com.bbva.cfs.commons.form.WelcomeForm" />
+		<form-bean name="authenticateForm" type="com.bbva.security.form.AuthenticateForm" />
+		<form-bean name="proveedorForm" type="com.bbva.cfs.proveedor.form.ProveedorForm" />
+		<form-bean name="proveedorPeriodoForm" type="com.bbva.cfs.proveedor.form.ProveedorPeriodoForm" />
+		<form-bean name="proveedorValorForm" type="com.bbva.cfs.proveedor.form.ProveedorValorForm" />
+		<form-bean name="proveedorTipoCambioForm" type="com.bbva.cfs.proveedor.form.ProveedorTipoCambioForm" />
+			
+		<form-bean name="productoForm" type="com.bbva.cfs.producto.form.ProductoForm" />
+		<form-bean name="productoPrecioForm" type="com.bbva.cfs.producto.form.ProductoPrecioForm" />
+		<form-bean name="productoSectorForm" type="com.bbva.cfs.producto.form.ProductoSectorForm" />
+		<form-bean name="productoPeriodoForm" type="com.bbva.cfs.producto.form.ProductoPeriodoForm" />
+		<form-bean name="productoPeriodoTarifaForm" type="com.bbva.cfs.producto.form.ProductoPeriodoTarifaForm" />
+		<form-bean name="productoAgrupadoForm" type="com.bbva.cfs.producto.form.ProductoAgrupadoForm" />
+		
+		<form-bean name="tablaForm" type="com.bbva.cfs.general.form.TablaForm" />
+		<form-bean name="sectorForm" type="com.bbva.cfs.sector.form.SectorForm" />
+
+		<form-bean name="usuarioForm" type="com.bbva.cfs.usuario.form.UsuarioForm" />
+		<form-bean name="usersForm" type="com.bbva.cfs.users.form.UsersForm" />
+		<form-bean name="servFactForm" type="com.bbva.cfs.servfact.form.ServFactForm" />
+		
+		<form-bean name="servPrestForm" type="com.bbva.cfs.servprest.form.ServPrestForm" />
+        <form-bean name="servPrestDetalleForm" type="com.bbva.cfs.servprestdetalle.form.ServPrestDetalleForm" />
+		
+		<form-bean name="conciliacionForm" type="com.bbva.cfs.conciliacion.form.ConciliacionForm" />
+		<form-bean name="difConciliacionForm" type="com.bbva.cfs.conciliacion.form.DiferenciaConciliacionForm" />
+		<form-bean name="conciliacionCabeceraForm" type="com.bbva.cfs.conciliacion.form.ConciliacionCabeceraForm" />
+		<form-bean name="repetidoForm" type="com.bbva.cfs.conciliacion.form.RepetidoForm" />
+		<form-bean name="busqConciliacionForm" type="com.bbva.cfs.conciliacion.form.BusquedaConciliacionesForm" />
+
+		<form-bean name="noMediblesForm" type="com.bbva.cfs.nomedibles.form.ConciliacionForm" />
+		<form-bean name="difNoMediblesForm" type="com.bbva.cfs.nomedibles.form.DiferenciaConciliacionForm" />
+		<form-bean name="noMediblesCabeceraForm" type="com.bbva.cfs.nomedibles.form.ConciliacionCabeceraForm" />
+		<form-bean name="busqNoMediblesForm" type="com.bbva.cfs.nomedibles.form.BusquedaConciliacionForm" />
+		
+		<form-bean name="consActLotesForm" type="com.bbva.cfs.lotes.form.ConsActLotesForm" />
+
+		<form-bean name="importForm" type="com.bbva.cfs.importacion.form.ImportacionForm" />
+		
+		<form-bean name="exportDataForm" type="com.bbva.cfs.export.form.ExportDataForm" />
+
+	</form-beans>
+
+	<global-exceptions>
+		<exception key="errors.global.message" type="java.io.IOException"
+			path="/pages/error.jsp" />
+		<exception key="errors.global.invalidPath.message"
+			type="org.apache.struts.chain.commands.InvalidPathException" path="/pages/error.jsp" />
+		<exception key="errors.global.action.message"
+			type="com.bbva.cfs.commons.exceptions.GlobalActionException" path="/pages/error.jsp" />
+		<exception key="errors.global.action.message" type="javax.servlet.ServletException"
+			path="/pages/error.jsp" />
+		<exception key="errors.global.service.message"
+			type="com.bbva.cfs.commons.exceptions.GlobalServiceException" path="/pages/error.jsp" />
+		<exception key="errors.global.dao.message"
+			type="com.bbva.cfs.commons.exceptions.DaoException" path="/pages/error.jsp" />
+		<exception key="errors.global.grant.message"
+			type="com.bbva.cfs.commons.exceptions.GlobalGrantException" path="/pages/error.jsp" />
+		<exception key="errors.global.message"
+			type="com.bbva.cfs.commons.exceptions.NotLoggedException"   path="/Logout.action" />
+		
+			
+	</global-exceptions>
+
+	<!-- ========== Global Forwards Definitions ============================== -->
+	<global-forwards type="org.apache.struts.action.ActionForward">
+		<forward name="index" path="/index.action" />
+		<forward name="importServFact" path="/pages/importacion/importarServFactContent.jsp" />
+		<forward name="importServPrest" path="/pages/importacion/importarServPrestContent.jsp"  />
+		<forward name="logout" path="/pages/logout.jsp" />
+		<forward name="error" path="/pages/error.jsp" />
+		<forward name="errorMessages" path="/pages/errorMessage.jsp" />
+	</global-forwards>
+
+	<!-- ========== Action Mapping Definitions ============================== -->
+	<action-mappings>
+		<action path="/AuthenticateUser" type="com.bbva.security.action.AuthenticateAction"
+			name="authenticateForm" scope="request" validate="false" parameter="authenticate">
+			<forward name="success" path="/index.action" />
+			<forward name="changePass" path="/ChangePasswordInit.action" />
+			<forward name="error" path="/errorLogin.jsp" />
+		</action>
+
+		<action path="/AuthenticateInit" type="com.bbva.security.action.AuthenticateAction"
+			name="authenticateForm" scope="request" validate="false" parameter="init">
+			<forward name="success" path="/login.jsp" />
+		</action>
+
+<!-- 		<action path="/ChangePassword" type="com.bbva.security.action.AuthenticateAction" -->
+<!-- 			name="authenticateForm" scope="request" validate="false" parameter="changePass"> -->
+<!-- 			<forward name="success" path="/index.action" /> -->
+<!-- 			<forward name="changePass" path="/changePass.jsp" /> -->
+<!-- 		</action> -->
+
+<!-- 		<action path="/ChangePasswordInit" type="com.bbva.security.action.AuthenticateAction" -->
+<!-- 			name="authenticateForm" scope="request" validate="false" parameter="changePassInit"> -->
+<!-- 			<forward name="success" path="/changePass.jsp" /> -->
+<!-- 		</action> -->
+
+<!-- 		<action path="/ChangePasswordLoggedUser" type="com.bbva.security.action.AuthenticateAction" -->
+<!-- 			name="authenticateForm" scope="request" validate="false" -->
+<!-- 			parameter="changePassLoggedUser"> -->
+<!-- 			<forward name="success" path="/changePass.jsp" /> -->
+<!-- 		</action> -->
+
+		<action path="/Logout" type="com.bbva.security.action.AuthenticateAction"
+			name="authenticateForm" scope="request" validate="false" parameter="logout">
+			<forward name="success" path="/pages/logout.jsp" />
+		</action>
+		
+		<action path="/checkSessionUser" scope="request" name="importForm" 
+			type="com.bbva.security.action.CheckSessionUserAction" 
+			validate="false">
+			<forward name="success" redirect="true" path="/Logout.action" />
+		</action>
+		
+
+		<action path="/index" type="com.bbva.cfs.commons.action.IndexAction"
+			name="loginForm" scope="request" validate="false">
+			<forward name="success" path="/index.jsp" />
+		</action>
+
+		<!-- Edit user registration -->
+		<action path="/login" type="com.bbva.cfs.commons.action.Login"
+			name="loginForm" scope="request" validate="false">
+			<forward name="success" path="/pages/menu.jsp" />
+		</action>
+
+		<!-- Mostrar la página principal del usuario -->
+		<action path="/mainMenuAfterLogin" type="com.bbva.cfs.commons.action.WelcomeAction"
+			scope="request" name="welcomeForm">
+			<forward name="success" path="/welcome.jsp" />
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- ACTIONS GENERAL							                    -->
+		<!-- ============================================================== -->		
+		<action path="/validatePeriodFact" name="difConciliacionForm" scope="request"
+			type="com.bbva.ar.utils.action.CommonValidationAction" parameter="validatePeriodFact"  validate="false" >
+			<description>Acción para validar los periodos de facturacion</description>
+		</action>
+		
+		<action path="/exportDataGrid" name="exportDataForm" scope="request"
+			type="com.bbva.cfs.export.action.ExportDataAction" parameter="exportDataGrid"  validate="false" >
+			<description>Acción Exportar jqgrid a XLS</description>
+		</action>
+			
+		<!-- ============================================================== -->
+		<!-- USUARIOS                                                       -->
+		<!-- ============================================================== -->
+		<action path="/ABMUsers" scope="request" name="usersForm"
+			type="com.bbva.cfs.users.action.UsersAction" parameter="init">
+			<forward name="success" path="/pages/users.jsp" />
+		</action>
+
+		<action path="/CreateUser" scope="request" name="usersForm"
+			type="com.bbva.cfs.users.action.UsersAction" parameter="create">
+		</action>
+
+		<action path="/EditUser" scope="request" name="usersForm"
+			type="com.bbva.cfs.users.action.UsersAction" parameter="edit">
+		</action>
+
+		<action path="/ResetUser" scope="request" name="usersForm"
+			type="com.bbva.cfs.users.action.UsersAction" parameter="resetUser">
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- PARAMETROS                                                     -->
+		<!-- ============================================================== -->
+		<action path="/parameterType" name="parameterForm" scope="request"
+			type="com.bbva.cfs.parameters.action.ABMParametersAction"
+			parameter="listTypes">
+			<forward name="success" path="/pages/parameterType.jsp" />
+		</action>
+
+		<action path="/Parameters" scope="request" name="parameterForm"
+			type="com.bbva.cfs.parameters.action.ParameterListAction">
+		</action>
+
+		<action path="/AddParameter" name="parameterForm" scope="request"
+			type="com.bbva.cfs.parameters.action.ABMParametersAction"
+			parameter="create">
+		</action>
+
+		<action path="/EditParameter" name="parameterForm" scope="request"
+			type="com.bbva.cfs.parameters.action.ABMParametersAction"
+			parameter="update">
+		</action>
+
+		<action path="/DelParameter" name="parameterForm" scope="request"
+			type="com.bbva.cfs.parameters.action.ABMParametersAction"
+			parameter="delete">
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- PROVEEDORES                                                    -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProveedores" scope="request" name="proveedorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedores.jsp" />
+		</action>
+			
+		<action path="/ABMCProveedoresBasicos" scope="request" name="proveedorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedoresBasicos.jsp" />
+		</action>
+			
+		<action path="/JsonProveedoresList" scope="request" name="proveedorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresGridListAction" parameter="loadGridProveedores"
+			 validate="false">
+		</action>
+
+		<action path="/deleteProveedor" scope="request" name="proveedorForm" 
+			type="com.bbva.cfs.proveedor.action.ProveedoresAction" parameter="deleteProveedor"
+			validate="false">
+		</action>
+
+		<action path="/saveProveedor" scope="request" name="proveedorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresAction" parameter="saveProveedor"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedores.jsp" />
+		</action>
+		
+		<action path="/saveProveedor" scope="request" name="proveedorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresAction" parameter="saveProveedor"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedores.jsp" />
+		</action>
+		<action path="/comboProveedorAction" scope="request" name="proveedorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresAction" parameter="getComboProveedores"
+			validate="false">
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- PROVEEDORES PERIODOS                                           -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProveedoresPeriodos" scope="request" name="proveedorPeriodoForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresPeriodosAction" 
+			parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedoresPeriodos.jsp" />
+		</action>
+			
+		<action path="/JsonProveedoresPeriodosList" scope="request" name="proveedorPeriodoForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresPeriodosGridListAction" 
+			parameter="loadGridProveedoresPeriodos"
+			validate="false">
+		</action>
+
+		<action path="/deleteProveedorPeriodo" scope="request" name="proveedorPeriodoForm" 
+			type="com.bbva.cfs.proveedor.action.ProveedoresPeriodosAction" 
+			parameter="deleteProveedorPeriodo"
+			validate="false">
+		</action>
+
+		<action path="/saveProveedorPeriodo" scope="request" name="proveedorPeriodoForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresPeriodosAction" 
+			parameter="saveProveedorPeriodo"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedoresPeriodos.jsp" />
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- PROVEEDORES VALORES                                            -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProveedoresValores" scope="request" name="proveedorValorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresValoresAction" 
+			parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedoresValores.jsp" />
+		</action>
+			
+		<action path="/JsonProveedoresValoresList" scope="request" name="proveedorValorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresValoresGridListAction" 
+			parameter="loadGridProveedoresValores"
+			validate="false">
+		</action>
+
+		<action path="/deleteProveedorValor" scope="request" name="proveedorValorForm" 
+			type="com.bbva.cfs.proveedor.action.ProveedoresValoresAction" 
+			parameter="deleteProveedorValor"
+			validate="false">
+		</action>
+
+		<action path="/saveProveedorValor" scope="request" name="proveedorValorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresValoresAction" 
+			parameter="saveProveedorValor"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedoresValores.jsp" />
+		</action>
+
+		<action path="/comboProveedoresPeriodos" scope="request" name="proveedorValorForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresValoresAction" parameter="getComboProveedoresPeriodos"
+			validate="false">
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- PROVEEDORES TIPO CAMBIO                                            -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProveedoresTipoCambio" scope="request" name="proveedorTipoCambioForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresTipoCambioAction" 
+			parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedoresTipoCambio.jsp" />
+		</action>
+			
+		<action path="/JsonProveedoresTipoCambioList" scope="request" name="proveedorTipoCambioForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresTipoCambioGridListAction" 
+			parameter="loadGridProveedoresTipoCambio"
+			validate="false">
+		</action>
+
+		<action path="/deleteProveedorTipoCambio" scope="request" name="proveedorTipoCambioForm" 
+			type="com.bbva.cfs.proveedor.action.ProveedoresTipoCambioAction" 
+			parameter="deleteProveedorTipoCambio"
+			validate="false">
+		</action>
+
+		<action path="/saveProveedorTipoCambio" scope="request" name="proveedorTipoCambioForm"
+			type="com.bbva.cfs.proveedor.action.ProveedoresTipoCambioAction" 
+			parameter="saveProveedorTipoCambio"
+			validate="false">
+			<forward name="success" path="/pages/abmc/proveedoresTipoCambio.jsp" />
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- PRODUCTOS                                                      -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProductos" scope="request" name="productoForm"
+			type="com.bbva.cfs.producto.action.ProductosAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productos.jsp" />
+		</action>
+			
+		<action path="/ABMCProductosBasicos" scope="request" name="productoForm"
+			type="com.bbva.cfs.producto.action.ProductosAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosBasicos.jsp" />
+		</action>
+			
+		<action path="/JsonProductosList" scope="request" name="productoForm"
+			type="com.bbva.cfs.producto.action.ProductosGridListAction" parameter="loadGridProductos"
+			 validate="false">
+		</action>
+
+		<action path="/deleteProducto" scope="request" name="productoForm" 
+			type="com.bbva.cfs.producto.action.ProductosAction" parameter="deleteProducto"
+			validate="false">
+		</action>
+
+		<action path="/saveProducto" scope="request" name="productoForm"
+			type="com.bbva.cfs.producto.action.ProductosAction" parameter="saveProducto"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosBasicos.jsp" />
+		</action>
+		
+		<action path="/comboProductoSectores" scope="request" name="productoForm"
+			type="com.bbva.cfs.producto.action.ProductosAction" parameter="getCombosSectores"
+			validate="false">
+		</action>
+
+		<action path="/comboProductoProveedores" scope="request" name="productoForm"
+			type="com.bbva.cfs.producto.action.ProductosAction" parameter="getCombosProveedores"
+			validate="false">
+		</action>
+		
+		<action path="/verificaExistenciaAgrupados" scope="request" name="productoForm"
+			type="com.bbva.cfs.producto.action.ProductosAction" parameter="getVerificaExistenciaAgrupados"
+			validate="false">
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- PRODUCTOS PRECIOS                                              -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProductosPrecios" scope="request" name="productoPrecioForm"
+			type="com.bbva.cfs.producto.action.ProductosPreciosAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosPrecios.jsp" />
+		</action>
+			
+		<action path="/JsonProductosPreciosList" scope="request" name="productoPrecioForm"
+			type="com.bbva.cfs.producto.action.ProductosPreciosGridListAction" parameter="loadGridProductosPrecios"
+			 validate="false">
+		</action>
+
+		<action path="/deleteProductoPrecio" scope="request" name="productoPrecioForm" 
+			type="com.bbva.cfs.producto.action.ProductosPreciosAction" parameter="deleteProductoPrecio"
+			validate="false">
+		</action>
+
+		<action path="/saveProductoPrecio" scope="request" name="productoPrecioForm"
+			type="com.bbva.cfs.producto.action.ProductosPreciosAction" parameter="saveProductoPrecio"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosPrecios.jsp" />
+		</action>
+
+		<action path="/comboProductosPrecios" scope="request" name="productoPrecioForm"
+			type="com.bbva.cfs.producto.action.ProductosPreciosAction" parameter="getComboProductosPrecios"
+			validate="false">
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- PRODUCTOS SECTORES                                             -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProductosSectores" scope="request" name="productoSectorForm"
+			type="com.bbva.cfs.producto.action.ProductosSectoresAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosSectores.jsp" />
+		</action>
+			
+		<action path="/JsonProductosSectoresList" scope="request" name="productoSectorForm"
+			type="com.bbva.cfs.producto.action.ProductosSectoresGridListAction" parameter="loadGridProductosSectores"
+			 validate="false">
+		</action>
+
+		<action path="/deleteProductoSector" scope="request" name="productoSectorForm" 
+			type="com.bbva.cfs.producto.action.ProductosSectoresAction" parameter="deleteProductoSector"
+			validate="false">
+		</action>
+
+		<action path="/saveProductoSector" scope="request" name="productoSectorForm"
+			type="com.bbva.cfs.producto.action.ProductosSectoresAction" parameter="saveProductoSector"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosSectores.jsp" />
+		</action>
+
+		<action path="/comboProductosSectores" scope="request" name="productoSectorForm"
+			type="com.bbva.cfs.producto.action.ProductosSectoresAction" parameter="getComboProductosSectores"
+			validate="false">
+		</action>
+		
+
+		<!-- ============================================================== -->
+		<!-- PRODUCTOS PERIODOS                                             -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProductosPeriodos" scope="request" name="productoPeriodoForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosPeriodos.jsp" />
+		</action>
+			
+		<action path="/JsonProductosPeriodosList" scope="request" name="productoPeriodoForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosGridListAction" parameter="loadGridProductosPeriodos"
+			 validate="false">
+		</action>
+
+		<action path="/deleteProductoPeriodo" scope="request" name="productoPeriodoForm" 
+			type="com.bbva.cfs.producto.action.ProductosPeriodosAction" parameter="deleteProductoPeriodo"
+			validate="false">
+		</action>
+
+		<action path="/saveProductoPeriodo" scope="request" name="productoPeriodoForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosAction" parameter="saveProductoPeriodo"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosPeriodos.jsp" />
+		</action>
+
+		<action path="/comboProductosPeriodos" scope="request" name="productoPeriodoForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosAction" parameter="getComboProductosPeriodos"
+			validate="false">
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- PRODUCTOS PERIODOS TARIFAS                                     -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProductosPeriodosTarifas" scope="request" name="productoPeriodoTarifaForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosTarifasAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosPeriodosTarifas.jsp" />
+		</action>
+			
+		<action path="/JsonProductosPeriodosTarifasList" scope="request" name="productoPeriodoTarifaForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosTarifasGridListAction" parameter="loadGridProductosPeriodosTarifas"
+			 validate="false">
+		</action>
+
+		<action path="/deleteProductoPeriodoTarifa" scope="request" name="productoPeriodoTarifaForm" 
+			type="com.bbva.cfs.producto.action.ProductosPeriodosTarifasAction" parameter="deleteProductoPeriodoTarifa"
+			validate="false">
+		</action>
+		
+		<action path="/deleteProductoPeriodoTarifas" scope="request" name="productoPeriodoTarifaForm" 
+			type="com.bbva.cfs.producto.action.ProductosPeriodosTarifasAction" parameter="deleteProductoPeriodoTarifas"
+			validate="false">
+		</action>
+
+		<action path="/saveProductoPeriodoTarifa" scope="request" name="productoPeriodoTarifaForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosTarifasAction" parameter="saveProductoPeriodoTarifa"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosPeriodosTarifas.jsp" />
+		</action>
+
+		<action path="/comboProductosPeriodosTarifas" scope="request" name="productoPeriodoTarifaForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosTarifasAction" parameter="getComboProductosPeriodosTarifas"
+			validate="false">
+		</action>
+		
+		<action path="/getNuevoCodigoTarifa" scope="request" name="productoPeriodoTarifaForm"
+			type="com.bbva.cfs.producto.action.ProductosPeriodosTarifasAction" parameter="getNuevoCodigoTarifa"
+			validate="false">
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- TABLAS                                                         -->
+		<!-- ============================================================== -->
+		<action path="/ABMCTablasGenerales" scope="request" name="tablaForm"
+			type="com.bbva.cfs.general.action.TablasAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/tablas.jsp" />
+		</action>
+			
+		<action path="/JsonTablasList" scope="request" name="tablaForm"
+			type="com.bbva.cfs.general.action.TablasGridListAction" parameter="loadGridTablas"
+			 validate="false">
+		</action>
+
+		<action path="/deleteTabla" scope="request" name="tablaForm" 
+			type="com.bbva.cfs.general.action.TablasAction" parameter="deleteTabla"
+			validate="false">
+		</action>
+
+		<action path="/saveTabla" scope="request" name="tablaForm"
+			type="com.bbva.cfs.general.action.TablasAction" parameter="saveTabla"
+			validate="false">
+			<forward name="success" path="/pages/abmc/tablas.jsp" />
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- SECTORES                                                       -->
+		<!-- ============================================================== -->
+		<action path="/ABMCSectores" scope="request" name="sectorForm"
+			type="com.bbva.cfs.sector.action.SectoresAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/sectores.jsp" />
+		</action>
+			
+		<action path="/JsonSectoresList" scope="request" name="sectorForm"
+			type="com.bbva.cfs.sector.action.SectoresGridListAction" parameter="loadGridSectores"
+			 validate="false">
+		</action>
+
+		<action path="/deleteSector" scope="request" name="sectorForm" 
+			type="com.bbva.cfs.sector.action.SectoresAction" parameter="deleteSector"
+			validate="false">
+		</action>
+
+		<action path="/saveSector" scope="request" name="sectorForm"
+			type="com.bbva.cfs.sector.action.SectoresAction" parameter="saveSector"
+			validate="false">
+			<forward name="success" path="/pages/abmc/sectores.jsp" />
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- PRODUCTOS AGRUPADOS                                                     -->
+		<!-- ============================================================== -->
+		<action path="/ABMCProductosAgrupados" scope="request" name="productoAgrupadoForm"
+			type="com.bbva.cfs.producto.action.ProductosAgrupadosAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosagrupados.jsp" />
+		</action>
+			
+		<action path="/JsonProductosAgrupadosList" scope="request" name="productoAgrupadoForm"
+			type="com.bbva.cfs.producto.action.ProductosAgrupadosGridListAction" parameter="loadGridProductosAgrupados"
+			 validate="false">
+		</action>
+
+		<action path="/deleteProductoAgrupado" scope="request" name="productoAgrupadoForm" 
+			type="com.bbva.cfs.producto.action.ProductosAgrupadosAction" parameter="deleteProductoAgrupado"
+			validate="false">
+		</action>
+
+		<action path="/saveProductoAgrupado" scope="request" name="productoAgrupadoForm"
+			type="com.bbva.cfs.producto.action.ProductosAgrupadosAction" parameter="saveProductoAgrupado"
+			validate="false">
+			<forward name="success" path="/pages/abmc/productosagrupados.jsp" />
+		</action>
+		
+		<action path="/comboProductosAgrupados" scope="request" name="productoAgrupadoForm"
+			type="com.bbva.cfs.producto.action.ProductosAgrupadosAction" parameter="getCombosProductos"
+			validate="false">
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- USUARIOS                                                       -->
+		<!-- ============================================================== -->
+		<action path="/ABMCUsuarios" scope="request" name="usuarioForm"
+			type="com.bbva.cfs.usuario.action.UsuariosAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/abmc/usuarios.jsp" />
+		</action>
+			
+		<action path="/JsonUsuariosList" scope="request" name="usuarioForm"
+			type="com.bbva.cfs.usuario.action.UsuariosGridListAction" parameter="loadGridUsuarios"
+			 validate="false">
+		</action>
+
+		<action path="/deleteUsuario" scope="request" name="usuarioForm" 
+			type="com.bbva.cfs.usuario.action.UsuariosAction" parameter="deleteUsuario"
+			validate="false">
+		</action>
+
+		<action path="/saveUsuario" scope="request" name="usuarioForm"
+			type="com.bbva.cfs.usuario.action.UsuariosAction" parameter="saveUsuario"
+			validate="false">
+			<forward name="success" path="/pages/abmc/usuarios.jsp" />
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- CONCILIACIONES                                                 -->
+		<!-- ============================================================== -->
+		<action path="/ABMCConciliaciones" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/conciliacion/conciliaciones.jsp" />
+		</action>
+		
+		<action path="/comboConciliacionPeriodos" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="getCombosProveedores"
+			validate="false">
+		</action>
+
+		<action path="/periodoConciliacion" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="getDatosPeriodo"
+			validate="false">
+		</action>
+
+		<action path="/productoConciliacion" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="getDatosProducto"
+			validate="false">
+		</action>
+
+		<action path="/uniValConciliacion" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="getDatosUniVal"
+			validate="false">
+		</action>
+	
+		<action path="/proveedorValorConciliacion" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="getDatosProveedorValor"
+			validate="false">
+		</action>
+
+		<action path="/comboNroConciliacion" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="getComboConciliacion"
+			validate="false">
+		</action>
+
+		<action path="/JsonConciliacionesList" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesGridListAction" parameter="loadGridConciliaciones"
+			 validate="false">
+		</action>
+
+		<action path="/exportarExcelConcilia" name="conciliacionForm" scope="request" 
+			type="com.bbva.ar.utils.action.ExportExcelAction" parameter="exportConciliacion"  validate="false" >
+			<description>Acción para exportar las diferencias de conciliacion </description>
+		</action>
+
+<!-- 
+		<action path="/JsonConciliacionList" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.JsonConciliacionesGridAction" parameter="loadGridConciliaciones" 
+			validate="false">
+			 <description> Metodo que carga la lista con objetos Json </description>
+		</action>
+ -->		
+		<action path="/saveConciliacion" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="saveConciliacion"
+			validate="false">
+		</action>
+
+		<action path="/consultaConciliacion" scope="request" name="conciliacionCabeceraForm"
+			type="com.bbva.cfs.conciliacion.action.ConciliacionesAction" parameter="consultaConciliacion"
+			validate="false">
+		</action>
+		
+		<action path="/JsonRepetidosList" scope="request" name="repetidoForm"
+			type="com.bbva.cfs.conciliacion.action.RepetidosGridListAction" parameter="loadGridRepetidos" 
+			validate="false">
+			 <description> Metodo que carga la lista con objetos Json </description>
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- DIFERENCIAS DE CONCILIACIONES     // DAVID                     -->
+		<!-- ============================================================== -->
+		<action path="/searchDifConciliacion" scope="request" name="difConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.DifConciliacionListAction" parameter="init"
+			validate="false">
+			<description> Metodo que carga los datos de la pantalla </description>
+			<forward name="success" path="/pages/consultas/searchDifConciliacion.jsp" />
+		</action>
+		
+		<action path="/JsonDifConciliacionList" scope="request" name="difConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.DifConciliacionListAction" parameter="search" 
+			validate="false">
+			 <description> Metodo que carga la lista con objetos Json </description>
+		</action>
+		
+		<action path="/JsonDifConciliacionGridList" scope="request" name="difConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.DifConciliacionListAction" parameter="searchFromConciliacion" 
+			validate="false">
+			 <description> Metodo que carga la lista con objetos Json </description>
+		</action>
+		
+		<action path="/difConciliacionEdit" scope="request" name="difConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.DifConciliacionCRUDAction" parameter ="edit" validate="false">
+			 <description>	
+			 		CRUD = Acronimo de Create, Read, Update and Delete 
+			 		Metodo que modifica la Conciliacion seleccionada 
+			 </description>
+		</action>
+		
+		<action path="/searchProductosByFilter" scope="request" name="difConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.DifConciliacionCRUDAction" parameter ="searchProductosByFilter" validate="false">
+			 <description>	
+			 		Metodo que devuelve la lista de productos filtrado por Sector y Proveedor
+			 </description>
+		</action>
+		
+		<action path="/searchPeriodByFilter" scope="request" name="difConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.DifConciliacionCRUDAction" parameter ="searchPeriodByFilter" validate="false">
+			 <description>	
+			 		Metodo que devuelve la lista de Periodos filtrado por Proveedor
+			 </description>
+		</action>
+		
+		<action path="/exportarExcelDifConcilia" name="difConciliacionForm" scope="request" 
+			type="com.bbva.ar.utils.action.ExportExcelAction" parameter="exportXLSDifConciliacion"  validate="false" >
+			<description>Acción para exportar a excel las diferencias de conciliacion </description>
+		</action>		
+		
+		<!-- ============================================================== -->
+		<!-- BUQUEDA DE CONCILIACIONES -->
+		<!-- ============================================================== -->
+
+		<action path="/searchConciliaciones" scope="request"
+			name="busqConciliacionForm" type="com.bbva.cfs.conciliacion.action.BusquedaConciliacionesAction"
+			parameter="init" validate="false">
+			<forward name="success"
+				path="/pages/conciliacion/busqueda_conciliaciones.jsp" />
+		</action>
+
+		<action path="/jsonBusqConcList" scope="request" name="busqConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.BusquedaConciliacionesGridListAction"
+			parameter="loadGridConcil" validate="false">
+		</action>
+
+		<action path="/comboProductos" scope="request" name="productoPrecioForm"
+			type="com.bbva.cfs.producto.action.ProductosPreciosAction" parameter="getComboProductosPrecios"
+			validate="false">
+		</action>
+		
+		<action path="/anularConciliacion" scope="request" name="busqConciliacionForm"
+			type="com.bbva.cfs.conciliacion.action.BusquedaConciliacionesAction" parameter="anularConciliacion"
+			validate="false">
+		</action>
+
+		<!-- ============================================================== -->
+		<!-- FIN BUQUEDA DE CONCILIACIONES -->
+		<!-- ============================================================== -->
+		
+		
+		<!-- ============================================================== -->
+		<!-- NO MEDIBLES                                                    -->
+		<!-- ============================================================== -->
+		<action path="/ABMCNoMedibles" scope="request" name="noMediblesForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/conciliacion/nomedibles.jsp" />
+		</action>
+
+		<action path="/comboNoMediblesPeriodos" scope="request" name="noMediblesForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="getCombosProveedores"
+			validate="false">
+		</action>
+
+		<action path="/periodoNoMedibles" scope="request" name="noMediblesForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="getDatosPeriodo"
+			validate="false">
+		</action>
+
+		<action path="/productoNoMedibles" scope="request" name="conciliacionForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="getDatosProducto"
+			validate="false">
+		</action>
+
+		<action path="/proveedorValorNoMedibles" scope="request" name="noMediblesForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="getDatosProveedorValor"
+			validate="false">
+		</action>
+
+		<action path="/comboNroNoMedibles" scope="request" name="noMediblesForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="getComboConciliacion"
+			validate="false">
+		</action>
+
+		<action path="/JsonNoMediblesList" scope="request" name="noMediblesForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesGridListAction" parameter="loadGridConciliaciones"
+			 validate="false">
+		</action>
+
+		<action path="/exportarExcelNoMedibles" name="noMediblesForm" scope="request" 
+			type="com.bbva.ar.utils.action.ExportExcelAction" parameter="exportConciliacion"  validate="false" >
+		</action>
+
+		<action path="/saveNoMedibles" scope="request" name="noMediblesForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="saveConciliacion"
+			validate="false">
+		</action>
+
+		<action path="/consultaNoMedibles" scope="request" name="noMediblesFormCabeceraForm"
+			type="com.bbva.cfs.nomedibles.action.ConciliacionesAction" parameter="consultaConciliacion"
+			validate="false">
+		</action>
+			
+		<!-- ============================================================== -->
+		<!-- FIN DE NOMEDIBLES -->
+		<!-- ============================================================== -->
+		
+		
+		
+	
+		<!-- ============================================================== -->
+		<!-- CONSULTA SERVICIOS FACTURADOS                                  -->
+		<!-- ============================================================== -->
+		<action path="/ConsServFact" scope="request" name="servFactForm"
+			type="com.bbva.cfs.servfact.action.ServFactAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/consultas/consServFact.jsp" />
+		</action>
+			
+		<action path="/JsonServFactList" scope="request" name="servFactForm"
+			type="com.bbva.cfs.servfact.action.ServFactGridListAction" parameter="loadGridServFact"
+			 validate="false">
+		</action>
+		<action path="/JsonServFactModel" scope="request" name="servFactForm"
+			type="com.bbva.cfs.servfact.action.ServFactGridModelAction" parameter="loadModelServFact"
+			 validate="false">
+		</action>
+		<action path="/ConsServFactDet" scope="request" name="servFactForm"
+			type="com.bbva.cfs.servfact.action.ServFactAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/consultas/consServFactDet.jsp" />
+		</action>
+		<action path="/JsonServFactDetList" scope="request" name="servFactForm"
+			type="com.bbva.cfs.servfact.action.ServFactDetGridListAction" parameter="loadGridServFact"
+			 validate="false">
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- CONSULTA SERVICIOS PRESTADOS                                  -->
+		<!-- ============================================================== -->
+		<action path="/ConsServPrest" scope="request" name="servPrestForm"
+			type="com.bbva.cfs.servprest.action.ServPrestAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/consultas/consServPrest.jsp" />
+		</action>
+			
+		<action path="/JsonServPrestList" scope="request" name="servPrestForm"
+			type="com.bbva.cfs.servprest.action.ServPrestGridListAction" parameter="loadGridServPrest"
+			 validate="false">
+		</action>
+		<action path="/JsonServPrestModel" scope="request" name="servPrestForm"
+			type="com.bbva.cfs.servprest.action.ServPrestGridModelAction" parameter="loadModelServPrest"
+			 validate="false">
+		</action>
+
+		<action path="/deleteServPrest" scope="request" name="servPrestForm" 
+			type="com.bbva.cfs.servprest.action.ServPrestAction" parameter="deleteSector"
+			validate="false">
+		</action>
+
+		<action path="/saveServPrest" scope="request" name="servPrestForm"
+			type="com.bbva.cfs.servprest.action.ServPrestAction" parameter="saveSector"
+			validate="false">
+			<forward name="success" path="/pages/consultas/consServPrest.jsp" />
+		</action>
+		
+                
+		<!-- ============================================================== -->
+		<!-- CONSULTA SERVICIOS PRESTADOS DETALLE                           -->
+		<!-- ============================================================== -->
+		<action path="/ConsServPrestDetalle" scope="request" name="servPrestDetalleForm"
+			type="com.bbva.cfs.servprestdetalle.action.ServPrestDetalleAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/consultas/consServPrestDetalle.jsp" />
+		</action>
+			
+		<action path="/JsonServPrestDetalleList" scope="request" name="servPrestDetalleForm"
+			type="com.bbva.cfs.servprestdetalle.action.ServPrestDetalleGridListAction" parameter="loadGridServPrestDetalle"
+			 validate="false">
+		</action>
+                
+		<action path="/JsonServPrestDetalleModel" scope="request" name="servPrestDetalleForm"
+			type="com.bbva.cfs.servprestdetalle.action.ServPrestDetalleGridModelAction" parameter="loadModelServPrestDetalle"
+			 validate="false">
+		</action>
+
+		<action path="/deleteServPrestDetalle" scope="request" name="servPrestDetalleForm" 
+			type="com.bbva.cfs.servprestdetalle.action.ServPrestDetalleAction" parameter="deleteSector"
+			validate="false">
+		</action>
+
+		<action path="/saveServPrestDetalle" scope="request" name="servPrestDetalleForm"
+			type="com.bbva.cfs.servprestdetalle.action.ServPrestDetalleAction" parameter="saveSector"
+			validate="false">
+			<forward name="success" path="/pages/consultas/consServPrestDetalle.jsp" />
+		</action>
+		
+		<!-- ============================================================== -->
+		<!-- CONSULTA Y ACTUALIZACION DE LOTES                              -->
+		<!-- ============================================================== -->
+		<action path="/consActLotes" scope="request" name="consActLotesForm"
+			type="com.bbva.cfs.lotes.action.ConsActLotesListAction" parameter="init"
+			validate="false">
+			<description> Metodo que carga la pantalla </description>
+			<forward name="success" path="/pages/consultas/consActLotes.jsp" />
+		</action>
+		
+		<action path="/JsonConsActLotesList" scope="request" name="consActLotesForm"
+			type="com.bbva.cfs.lotes.action.ConsActLotesListAction" parameter="search" 
+			validate="false">
+			 <description> Metodo que carga la lista con objetos Json </description>
+		</action>
+		
+		<action path="/consActLotesAnular" scope="request" name="consActLotesForm"
+			type="com.bbva.cfs.lotes.action.ConsActLotesCRUDAction" parameter="anular" validate="false">
+			 <description>	
+			 		CRUD = Acronimo de Create, Read, Update and Delete 
+			 		Metodo que modifica el lote seleccionado
+			 </description>
+		</action>
+
+		<!-- ==============================================================	-->
+		<!-- IMPORTACION DE FACTURAS A CONCILIAR							-->
+		<!-- ==============================================================	-->
+		
+		<action path="/importFacturas" scope="request" name="importForm" 
+			type="com.bbva.cfs.importacion.action.ImportarFacturasAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/importacion/importarServFact.jsp" />
+		</action>
+
+		<action path="/importFacturasTest" scope="request" name="importForm" 
+			type="com.bbva.cfs.importacion.action.ImportarFacturasAction" parameter="importar"
+			validate="false">
+			<forward name="success" path="/pages/importacion/importarServFact.jsp" />
+		</action>
+		
+	<!--   ================================================== 	-->
+
+
+		<!-- ==============================================================	-->
+		<!-- IMPORTACION DE SERVICIOS PRESTADOS A CONCILIAR					-->
+		<!-- ==============================================================	-->
+		
+		<action path="/importarServPrest" scope="request" name="importForm" 
+			type="com.bbva.cfs.importacion.action.ImportarServPrestAction" parameter="init"
+			validate="false">
+			<forward name="success" path="/pages/importacion/importarServPrest.jsp" />
+		</action>
+
+		<action path="/importarServPrestTest" scope="request" name="importForm" 
+			type="com.bbva.cfs.importacion.action.ImportarServPrestAction" parameter="importar"
+			validate="false">
+			<forward name="success" path="/pages/importacion/importarServPrest.jsp" />
+		</action>
+		
+	<!--   ================================================== 	-->
+
+
+	</action-mappings>
+	<message-resources parameter="/com/bbva/cfs/resources/ApplicationResources" />
+	<message-resources parameter="com.bbva.cfs.resources.ToolTipResources" key="toolTip" />
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/org/apache/struts/validator/validator-rules.xml, /WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>

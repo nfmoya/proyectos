@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!--
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+-->
+<log4j:configuration>
+
+	<!--
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+	   <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+			value="%d{dd/MM/yy HH:mm:ss} %-5p [%t] %C{2} (%F:%L) - %M:%m%n"/>
+	   </layout>	    
+	</appender>
+	-->
+
+	<appender name="LOG" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${log4j.logPath}/cfs4jR.log" />
+	   <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"
+		    value="%d{dd/MM/yy HH:mm:ss} %-5p [%t] %C{2} - %M:%m%n"/>
+	   </layout>	    
+	</appender>
+
+	<appender name="LOGDBG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${log4j.logPath}/cfs4j.log" />
+		<param name="datePattern" value="yyyyMMdd" />
+	   <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"
+		    value="%d{dd/MM/yy HH:mm:ss} %-5p [%t] %C (%F:%L) - %M:%m%n"/>
+	   </layout>	    
+	</appender>
+
+	<!--
+	<appender name="SYSLOG" class="org.apache.log4j.net.SyslogAppender">
+	-->
+	<appender name="SYSLOG" class="ar.org.bbva.util.net.SyslogAppender">
+		<param name="SyslogHost" value="${log4j.syslogServer}" />
+		<param name="Facility" value="${log4j.facility}" />
+		<param name="Process" value="${log4j.process}" />
+		<layout class="org.apache.log4j.PatternLayout">
+			 <param name="ConversionPattern"
+			value="%d{dd/MM/yy HH:mm:ss} %-5p [%t] %C (%F:%L) - %M:%m%n"/>
+		</layout>	    
+	</appender>
+
+
+	<appender name="LOGST" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${log4j.logPath}/cfs.status" />
+		<param name="datePattern" value=".yyyyMMdd" />
+	   <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern"
+		    value="%d{yyyyMMdd-HHmmss} %-5p %m%n"/>
+	   </layout>	    
+	</appender>
+
+	<category name="ar.com.bbva.samx.controls.showAppStatus" additivity="false">
+		<priority value="info" />
+		<appender-ref ref="LOGST" />
+	</category>
+	
+
+	<category name="org.apache">
+		<priority value="info" />
+		<appender-ref ref="LOG" />
+	</category>
+	
+	<!--
+	<category name="org.apache.commons.digester">
+	  <priority value="debug" />
+	</category>
+
+	<category name="org.apache.log4j.xml">
+	  <priority value="info" />
+	</category>
+
+	<category name="ar.com.itrsa.sam">
+	  <priority value="debug" />
+   	   <appender-ref ref="LOGDBG" />
+	</category>
+	-->
+
+	<category name="ar.com.itrsa.sam.ora.GenericOracleTransaction">
+		<priority value="debug" />
+	</category>
+	
+	<category name="ar.com.itrsa.sam.jdbc.GenericJDBCTransaction">
+		<priority value="debug" />
+	</category>
+
+	<category name="ar.com.itrsa.sam.converter">
+		<priority value="warn" />
+	</category>
+
+	<category name="ar.com.itrsa.sam.ora.converters">
+		<priority value="warn" />
+	</category>
+
+	<category name="ar.com.itrsa.sam">
+		<priority value="info" />
+	</category>
+
+	<category name="com.bbva.sam.host">
+		<priority value="debug" />
+	</category>
+
+	<category name="ar.com.bbva">
+		<priority value="debug" />
+	</category>
+
+	<category name="ar.org.bbva.pki">
+		<priority value="debug" />
+	</category>
+
+	<root>
+	   <priority value ="debug" />
+   	   <appender-ref ref="LOGDBG" />
+   	   <appender-ref ref="LOG" />
+   	   <appender-ref ref="SYSLOG" />
+	</root>
+	
+</log4j:configuration>

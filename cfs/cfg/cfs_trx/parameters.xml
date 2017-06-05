@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+
+	<jdbc-transaction name="LISTAR_TIPO_PARAMETRO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_consulta_param_tabla">
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="codigo" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="valor1" javaTypeName="java.lang.String" /> 
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+
+	<jdbc-transaction name="LISTAR_PARAMETROS"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_consulta_parametros">
+			<input-parameter name="pi_id_tabla" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_filtro_1" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_filtro_2" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="codigo" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="valor1" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+</transaction-list>

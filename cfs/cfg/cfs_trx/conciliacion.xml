@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+	<jdbc-transaction name="CONCILIACION_LISTA" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_busqueda_conciliacion">
+			<input-parameter name="pi_cd_proveedor"    sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_sector"       sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_cd_producto"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_periodo"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_remitodesde"  sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_remitohasta"  sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_finservdesde" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_finservhasta" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_conciliacion" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_conciliacion" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_nu_billetes"     sqlTypeName="NUMERIC" />
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">
+ 				<column-attribute-mapping attribute="CD_REMITO_PRES"        	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="FH_REMITO"             	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="FH_FIN_SERV"           	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CT_SERVPREST"          	javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="IM_PRECIOTOTAL_PRES"   	javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="IM_PRECIOTOTAL_PRES_CONV"   javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="CD_TIPVAL"             	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_MONEDA"             	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_CONCILIACION_PRES"  	javaTypeName="java.lang.Integer" />
+ 				<column-attribute-mapping attribute="CHK_PRES"              	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_REMITO_FACT"        	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="TP_COMPROBANTE"        	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="NU_COMPROBANTE"        	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CT_SERVFACT"           	javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="IM_PRECIOTOTAL_FACT"   	javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="CD_CONCILIACION_FACT"  	javaTypeName="java.lang.Integer" />
+ 				<column-attribute-mapping attribute="CHK_FACT"              	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CT_SERVFACT_DIFE"      	javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="IM_SERVFACT_DIFE"      	javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="CD_LOTESERV"           	javaTypeName="java.lang.Integer" />
+ 				<column-attribute-mapping attribute="CD_ORDENSERV"          	javaTypeName="java.lang.Integer" /> 
+ 				<column-attribute-mapping attribute="CD_SECTORSOL"          	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_SECTORCONTROL"      	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PRODUCTOPRES"       	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_UNIVAL"             	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="IM_PRECIOUNITPRES"     	javaTypeName="java.lang.Number" /> 
+ 				<column-attribute-mapping attribute="NB_PIEZADESDEPRES"     	javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="NB_PIEZAHASTAPRES"     	javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="CD_REMITOPADRE"        	javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="NB_ATRIBUTOREF1"       	javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="NB_ATRIBUTOREF2"       	javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="NB_OBSERVACIONES"      	javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="ST_LOTEDET"            	javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="FH_MODIFICACION"       	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="NB_USUARIOMODIF"       	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_LOTEFACT"           	javaTypeName="java.lang.Integer" />
+ 				<column-attribute-mapping attribute="CD_ORDENFACT"          	javaTypeName="java.lang.Integer" /> 
+ 			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+
+	<jdbc-transaction name="CONCILIACION_CONSULTA" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_consulta_conciliacion">
+			<input-parameter name="pi_cd_conciliacion" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_cd_proveedor"    sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_sector"       sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_cd_producto"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_periodo"      sqlTypeName="VARCHAR" />
+						
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">
+ 				<column-attribute-mapping attribute="CD_CONCILIACION"       javaTypeName="java.lang.Integer" />
+ 				<column-attribute-mapping attribute="CD_PROVEEDOR"          javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_SECTOR"             javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PRODUCTO"           javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PERIODOFACT"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="ST_IGNORAVAL"          javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="NB_OBSERVACIONES"      javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="ST_CONCILIACION"       javaTypeName="java.lang.String" /> 
+ 				<column-attribute-mapping attribute="FH_REMITO_DESDE"       javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="FH_REMITO_HASTA"       javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="FH_FIN_SERV_DESDE"     javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="FH_FIN_SERV_HASTA"     javaTypeName="java.lang.String" />				
+ 			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+
+<!-- 	
+	<jdbc-transaction name="CONCILIACION_SAVE" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_grabar_conciliacion">
+			<input-parameter name="pi_cd_conciliacion"  sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_cd_proveedor"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_sector"        sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_cd_producto"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_periodo"       sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_ignoraval"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_nb_observaciones" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_conciliacion"  sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ls_servpres"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ls_servfact"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ls_servdife"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_modi"         sqlTypeName="VARCHAR" />
+			<output-parameter name="po_conciliacion"    sqlTypeName="NUMERIC"     javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_c_error"         sqlTypeName="NUMERIC"     javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"         sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+ -->
+ 
+	<jdbc-transaction name="CONCILIACION_SAVE" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_grabar_conciliacion_cab">
+			<input-parameter name="pi_cd_conciliacion"  sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_cd_proveedor"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_sector"        sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_cd_producto"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_periodo"       sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_ignoraval"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_nb_observaciones" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_conciliacion"  sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_remitodesde"   sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_remitohasta"   sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_finservdesde"  sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fh_finservhasta"  sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_ls_servdife"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_modi"         sqlTypeName="VARCHAR" />
+			<output-parameter name="po_conciliacion"    sqlTypeName="NUMERIC"     javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_c_error"         sqlTypeName="NUMERIC"     javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"         sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+
+	<jdbc-transaction name="CONCILIACION_SAVE_PRES" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_grabar_conciliacion_pres">
+			<input-parameter name="pi_cd_conciliacion"  sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_st_conciliacion"  sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ls_servpres"      sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"         sqlTypeName="NUMERIC"     javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"         sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONCILIACION_SAVE_FACT" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_grabar_conciliacion_fact">
+			<input-parameter name="pi_cd_conciliacion"  sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_ls_servfact"      sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"         sqlTypeName="NUMERIC"     javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"         sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONCILIACION_REPETIDOS" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_busqueda_repetidos_conciliacion">
+			<input-parameter name="pi_cd_proveedor"    sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_producto"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_periodo"      sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_sector"       sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_cd_conciliacion" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">
+ 				<column-attribute-mapping attribute="CD_REMITO"             javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PERIODOFACT"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="TP_COMPROBANTE"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="NU_COMPROBANTE"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CT_SERVFACT"           javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="IM_PRECIOUNIT"         javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="IM_PRECIOTOTAL"        javaTypeName="java.lang.Number" />
+ 			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="BUSCAR_CONCILIACIONES" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_busqueda_conciliaciones">
+			<input-parameter name="pi_cdProveedor"    sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cdSector"       sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_fhDesde"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fhHasta"      sqlTypeName="VARCHAR" />
+			<input-parameter name="cdProducto"  sqlTypeName="VARCHAR" />
+			<input-parameter name="estadoDif"  sqlTypeName="VARCHAR" />
+			<input-parameter name="stDiferencia" sqlTypeName="VARCHAR" />
+			<input-parameter name="cdConciliacion" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">
+				<column-attribute-mapping attribute="CD_CONCILIACION"        javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="CD_SECTOR"        		javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PERIODOFACT"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="ST_PERIODOFACT"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PRODUCTO"        	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="descripcion" 		javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="ST_CONCILIACION"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="ST_IGNORAVAL"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="estadoDif"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="NB_OBSERVACIONES"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="FH_CONCILIACION"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="NB_USUARIOCONCIL"        javaTypeName="java.lang.String" />
+ 			</output-parameter>
+		</statement-call>	
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="BUSCAR_CONCIL_PROD_NOMED" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_busqConcilProdNoMed">
+			<input-parameter name="pi_cdProveedor"    sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cdSector"       sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_fhDesde"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fhHasta"      sqlTypeName="VARCHAR" />
+			<input-parameter name="cdProducto"  sqlTypeName="VARCHAR" />
+			<input-parameter name="estadoDif"  sqlTypeName="VARCHAR" />
+			<input-parameter name="stDiferencia" sqlTypeName="VARCHAR" />
+			<input-parameter name="cdConciliacion" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">
+				<column-attribute-mapping attribute="CD_CONCILIACION"        javaTypeName="java.lang.Number" />
+ 				<column-attribute-mapping attribute="CD_SECTOR"        		javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PERIODOFACT"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="ST_PERIODOFACT"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="CD_PRODUCTO"        	javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="descripcion" 		javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="ST_CONCILIACION"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="ST_IGNORAVAL"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="estadoDif"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="NB_OBSERVACIONES"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="FH_CONCILIACION"        javaTypeName="java.lang.String" />
+ 				<column-attribute-mapping attribute="NB_USUARIOCONCIL"        javaTypeName="java.lang.String" />
+ 			</output-parameter>
+		</statement-call>	
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="ANULAR_CONCILIACION" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_anularConciliacion">
+			<input-parameter name="cdConciliacion" sqlTypeName="NUMERIC" />
+			<input-parameter name="observaciones" sqlTypeName="VARCHAR" />
+			<input-parameter name="userAnulacion" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>	
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="ANULAR_CONCILIACION_NO_MED" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_anularConcilNoMed">
+			<input-parameter name="cdConciliacion" sqlTypeName="NUMERIC" />
+			<input-parameter name="observaciones" sqlTypeName="VARCHAR" />
+			<input-parameter name="userAnulacion" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>	
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONCILIACION_PRODUCTO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_Productos_Conc">
+			<input-parameter name="pi_CD_PROVEEDOR"        sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_SECTOR"           sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PRODUCTO"         sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error"            sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error"            sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="CD_PROVEEDOR"       javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO"        javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_PRODUCTO"        javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_UNIVAL"          javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_CONCILSINVAL"    javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_SERVSINCONCIL"   javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_FACTSINCONCIL"   javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NU_DIAEMIFDESDE"    javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NU_DIAEMIFHASTA"    javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NU_DIACIERREFDESDE" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NU_DIACIERREFHASTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_HABILITADO"      javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO"   javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_RELACIONSECTOR"  javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONCILIACION_DIF_LIST" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_busqueda_diferencias">
+			<input-parameter name="pi_cd_proveedor"    sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_sector"       sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_pf_desde"        sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_pf_hasta"        sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_producto"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_diferencia"   sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_tp_solucion"     sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_conciliacion" sqlTypeName="NUMERIC" />			
+		
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_CONCILIACION" javaTypeName="java.lang.Long" /> 
+				<column-attribute-mapping attribute="CD_ORDEN" javaTypeName="java.lang.Long" />
+				<column-attribute-mapping attribute="CD_REMITO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_SECTOR" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PERIODOFACT" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_PERIODOFACT" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_DESCRIPCION" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_PIEZADESDE" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_PIEZAHASTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CT_DIFERENCIA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_UNIVAL" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="IM_PRECIOTOTAL" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_DIFERENCIA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="FH_ALTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_USUARIOALTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_OBSERVACIONES" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="TP_SOLUCION" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_TIPVAL" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+</transaction-list>

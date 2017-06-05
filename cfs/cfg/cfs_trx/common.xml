@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+
+<transaction-list>
+
+	<jdbc-transaction name="INICIAR_SESION"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_iniciar_sesion">
+			<input-parameter name="d_user" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_usuario_id" sqlTypeName="NUMERIC"    javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_sep_listas" sqlTypeName="VARCHAR" 	javaTypeName="java.lang.String" />
+			<output-parameter name="po_sep_sublistas" sqlTypeName="VARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="po_full_name" sqlTypeName="VARCHAR"     javaTypeName="java.lang.String" />
+			<output-parameter name="po_sector" sqlTypeName="VARCHAR"        javaTypeName="java.lang.String" />
+			<output-parameter name="po_id_perfil" sqlTypeName="NUMERIC"        javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC"       javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR"   javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="id_acceso" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="d_acceso" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONSULTAR_MENU"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_consulta_menu">
+			<input-parameter name="pi_id_usuario" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC"
+				javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR"
+				javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="id_menu" javaTypeName="java.lang.Number" /> 
+				<column-attribute-mapping attribute="d_menu" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="x_url_menu" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="id_padre" javaTypeName="java.lang.Number" />		
+				<column-attribute-mapping attribute="n_nivel" javaTypeName="java.lang.Number" /> 
+				<column-attribute-mapping attribute="n_orden" javaTypeName="java.lang.Number" /> 
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+		 
+	<jdbc-transaction name="GET_USERS_AVAILABLES"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_logueo">
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="d_user" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="nombre_usuario" javaTypeName="java.lang.String" /> 
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="VALIDATE_PERIOD_FACT" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_valida_periodos_fact">		
+			<input-parameter name="pi_pf_desde" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_pf_hasta" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_cd_proveedor" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+	<jdbc-transaction name="VALIDATE_PERIOD_FACT2" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_valida_periodos_fact2">		
+			<input-parameter name="pi_pf_desde" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_pf_hasta" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_cd_proveedor" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+	
+</transaction-list>

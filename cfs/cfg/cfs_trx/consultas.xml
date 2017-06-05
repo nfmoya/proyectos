@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+
+	<jdbc-transaction name="LISTAR_DIF_CONCILIACION" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_consulta_dif_concilia">
+			<input-parameter name="pi_cd_proveedor" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_sector" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_pf_desde" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_pf_hasta" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_producto" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_diferencia" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_tp_solucion" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_conciliacion" sqlTypeName="NUMERIC" />			
+		
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_CONCILIACION" javaTypeName="java.lang.Long" /> 
+				<column-attribute-mapping attribute="CD_ORDEN" javaTypeName="java.lang.Long" />
+				<column-attribute-mapping attribute="CD_REMITO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_SECTOR" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PERIODOFACT" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_PERIODOFACT" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_DESCRIPCION" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_PIEZADESDE" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_PIEZAHASTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CT_DIFERENCIA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_UNIVAL" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="IM_PRECIOTOTAL" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_TIPVAL" javaTypeName="java.lang.String" />				
+				<column-attribute-mapping attribute="ST_DIFERENCIA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="FH_ALTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_USUARIOALTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_OBSERVACIONES" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="TP_SOLUCION" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="EDITAR_DIF_CONCILIACION" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_editar_dif_concilia">
+			<input-parameter name="pi_cd_conciliacion" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_cd_orden" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_cd_remito" sqlTypeName="VARCHAR" />				
+			<input-parameter name="pi_ct_diferencia" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_im_precioTotal" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_tp_solucion" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_diferencia" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_observacion" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cod_event" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_id_usuario" sqlTypeName="VARCHAR" />						
+					
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />			
+		</statement-call>		
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONSULTA_SERV_FACT" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServFact">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_HABILITADO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_TIPCOMP" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />			
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_SECTORCONCIL" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+		        <column-attribute-mapping attribute="MES1CANTFACT" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES1SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES1REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES1REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES2REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES3REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES4REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES5REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES6REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES7REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES8REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES9REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES10REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES11REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES12REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="SERVFACT" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="VALORFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORFACTBRUTO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORFACTNETO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="TOTALREMITOS" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="TOTALREMITOSACON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="NU_PORCVARMAX" javaTypeName="java.lang.Integer" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	<jdbc-transaction name="CONSULTA_SERV_FACT_RED" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServFactReduc">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_HABILITADO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_TIPCOMP" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />			
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_SECTORCONCIL" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+		        <column-attribute-mapping attribute="MES1CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES1SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES1REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES1REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES2REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES3REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES4REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES5REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES6REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES7REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES8REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES9REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES10REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES11REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12CANTFACT"  javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES12REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="SERVFACT" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="VALORFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORFACTBRUTO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORFACTNETO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="TOTALREMITOS" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="TOTALREMITOSACON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="NU_PORCVARMAX" javaTypeName="java.lang.Integer" />		        
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	<jdbc-transaction name="CONSULTA_SERV_FACT_DET" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServFactDetWV_2">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_HABILITADO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_TIPCOMP" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />			
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">
+				<column-attribute-mapping attribute="CD_SECTORCONCIL" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_PRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_LOTEFACT" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PERIODOFACT" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="TP_COMPROBANTE" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NU_COMPROBANTE" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_REMITO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="FH_REMITO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="FH_FIN_SERV" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CT_SERVFACT" javaTypeName="java.lang.Number" />
+				<column-attribute-mapping attribute="IM_PRECIOTOTAL" javaTypeName="java.lang.Number" />
+				<column-attribute-mapping attribute="NB_OBSERVACIONES" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_LOTEDET" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_CONCILIACION" javaTypeName="java.lang.String" />
+
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	<jdbc-transaction name="LISTAR_CONS_ACT_LOTES" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_get_consActLotes">
+			<input-parameter name="pi_tp_lote" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_proveedor" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_fa_desde" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_fa_hasta" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_st_lote" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_nro_lote" sqlTypeName="NUMERIC" />		
+		
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_LOTE" javaTypeName="java.lang.Long" />
+				<column-attribute-mapping attribute="TP_INTERFAZ" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_ARCHIVO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PROVEEDOR" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ST_LOTECAB" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_OBSERVACIONES" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="FH_ALTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="NB_USUARIOALTA" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="ANULAR" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+     <jdbc-transaction name="CONSULTA_SERV_PREST" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServPrest">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ST_LOTEDET" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />			
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_SECTOR" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+		        <column-attribute-mapping attribute="MES1SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES1VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES1REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES1REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES2VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES2REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES3VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES3REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES4VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES4REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES5VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES5REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES6VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES6REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES7VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES7REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES8VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES8REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES9VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES9REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES10VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES10REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES11VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES11REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES12VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES12REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORPRESTBRUTO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORPRESTNETO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="TOTALREMITOS" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="TOTALREMITOSACON" javaTypeName="java.lang.Integer" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="CONSULTA_SERV_PREST_DETALLE" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServPrestDetalleVW_2">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_GRUPOPRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_FH_REMITO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_FH_FIN_SERV" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />
+			<input-parameter name="pi_ST_LOTEDET" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+			<column-attribute-mapping attribute="CD_SECTOR" javaTypeName="java.lang.String" /> 
+			<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="NB_DESCRIPCION" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="CD_LOTESERV" javaTypeName="java.lang.Integer" />
+			<column-attribute-mapping attribute="CD_REMITO" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="FH_REMITO" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="FH_FIN_SERV" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="CT_SERVPREST" javaTypeName="java.math.BigDecimal" />
+			<column-attribute-mapping attribute="IM_PRECIOTOTAL" javaTypeName="java.math.BigDecimal" />
+			<column-attribute-mapping attribute="NB_OBSERVACIONES" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="ST_LOTEDET" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="CD_CONCILIACION" javaTypeName="java.lang.Integer" />
+			<column-attribute-mapping attribute="NB_ATRIBUTOREF1" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="NB_ATRIBUTOREF2" javaTypeName="java.lang.String" />
+			<column-attribute-mapping attribute="NB_TIPVAL" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+    <jdbc-transaction name="CONSULTA_SERV_PREST_RED" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServPrestRed">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ST_LOTEDET" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />			
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_SECTOR" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+		        <column-attribute-mapping attribute="MES1SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES1VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES1REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES1REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES2VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES2REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES2REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES3VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES3REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES3REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES4VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES4REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES4REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES5VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES5REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES5REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES6VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES6REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES6REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES7VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES7REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES7REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES8VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES8REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES8REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES9VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES9REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES9REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES10VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES10REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES10REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES11VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES11REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES11REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES12VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="MES12REM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="MES12REMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="SERVPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORPREST" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORPRESTBRUTO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="VALORPRESTNETO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="TOTALREMITOS" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="TOTALREMITOSACON" javaTypeName="java.lang.Integer" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+   
+	
+	<jdbc-transaction name="ANULAR_CONS_ACT_LOTES" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_anularLote">
+			<input-parameter name="pi_tp_lote" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_cd_lote" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_id_usuario" sqlTypeName="VARCHAR" />
+					
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />			
+		</statement-call>		
+	</jdbc-transaction>
+
+	<jdbc-transaction name="GET_SERV_PREST_PERIODOS" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Get_ServPrestPeriodos">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ST_LOTEDET" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />			
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="PERIODO" javaTypeName="java.lang.String" /> 
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+<jdbc-transaction name="CONSULTA_SERV_FACT2" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServFactWV_2">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_HABILITADO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_PERIODO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_TIPCOMP" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />
+			<input-parameter name="pi_REDUCIDA" sqlTypeName="INTEGER" />
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_SECTORCONCIL" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+		        <column-attribute-mapping attribute="CANTFACT" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="CANTREM" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="CANTREMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="CT_NETO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="CT_BRUTO" javaTypeName="java.math.BigDecimal" />
+				<column-attribute-mapping attribute="CD_PERIODOFACT" javaTypeName="java.lang.String" />
+		        <column-attribute-mapping attribute="NU_PORCVARMAX" javaTypeName="java.lang.Integer" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+
+<jdbc-transaction name="CONSULTA_SERV_PREST2" dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_CFS_Consulta_ServPrestWV_2">
+			<input-parameter name="pi_CD_PROVEEDOR" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_SECTOR" sqlTypeName="VARCHAR" />			
+			<input-parameter name="pi_CD_PRODUCTO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_CD_GRUPO" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_COMPROBANTE" sqlTypeName="VARCHAR" />	
+			<input-parameter name="pi_NM_REMITO_DESDE" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_REMITO_HASTA" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_ST_LOTEDET" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_NM_LOTE" sqlTypeName="INTEGER" />		
+			<input-parameter name="pi_REDUCIDA" sqlTypeName="INTEGER" />			
+
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" elemJavaTypeName="DynaBean">			 
+				<column-attribute-mapping attribute="CD_SECTORCONCIL" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="CD_GRUPOPRODUCTO" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="CD_PRODUCTO" javaTypeName="java.lang.String" />
+		        <column-attribute-mapping attribute="CANTFACT" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="SERVFACT" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="CANTREMITOS" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="CANTREMCON" javaTypeName="java.lang.Integer" />
+		        <column-attribute-mapping attribute="CT_NETO" javaTypeName="java.math.BigDecimal" />
+		        <column-attribute-mapping attribute="CT_BRUTO" javaTypeName="java.math.BigDecimal" />
+				<column-attribute-mapping attribute="CD_PERIODOFACT" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+</transaction-list>

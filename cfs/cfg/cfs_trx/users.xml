@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+	
+	<jdbc-transaction name="CONSULTA_USUARIO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_consulta_usuario">
+			<input-parameter name="pi_id_usuario_loggeado" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_id_persona" sqlTypeName="NUMERIC" />
+			<output-parameter name="po_id_usuario" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_nombre_usuario" sqlTypeName="VARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="estado_usuario" sqlTypeName="VARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="po_id_ong" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_blanquea_usu" sqlTypeName="VARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="id_perfil" javaTypeName="java.lang.Number" /> 
+				<column-attribute-mapping attribute="d_perfil" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="n_nivel_mensaje" javaTypeName="java.lang.Number" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="ALTA_USUARIO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_inserta_usuario">
+			<input-parameter name="pi_id_usuario_logg" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_id_persona" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_d_user" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_estado_usuario" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_id_ong" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_l_perfiles" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_clave_defecto" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_id_usuario" sqlTypeName="NUMERIC"
+				javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC"
+				javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR"
+				javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+	
+	<jdbc-transaction name="MODIF_USUARIO"
+		dataSourceFactoryName="BDCFS" autoCommit="true">
+		<statement-call statement="sp_modifica_usuario">
+			<input-parameter name="pi_id_usuario_logg" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_id_persona" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_id_usuario" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_estado_usuario" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_id_ong" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_l_perfiles_ins" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_l_perfiles_del" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_clave_defecto" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC"
+				javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR"
+				javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>
+	
+</transaction-list>

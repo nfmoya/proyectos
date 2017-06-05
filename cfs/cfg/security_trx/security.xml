@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transaction-list PUBLIC "-//Service Access Manager//DTD Transaction Configuration//EN" "trxs-config.dtd">
+
+<transaction-list>
+
+	<jdbc-transaction name="SECURITY_GET_USER"
+		dataSourceFactoryName="BDSECURITY" autoCommit="true">
+		<statement-call statement="sp_GetUsuario">
+			<input-parameter name="pi_usu_d_user" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+			<output-parameter name="cursor" sqlTypeName="CURSOR" javaTypeName="java.util.ArrayList" 
+				elemJavaTypeName="DynaBean"> 
+				<column-attribute-mapping attribute="usu_d_user" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="usu_habilitado" javaTypeName="java.lang.String" /> 
+				<column-attribute-mapping attribute="usu_estado" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="usu_ult_acceso" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="usu_hora_acceso" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="usu_clave1" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="usu_clave2" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="usu_clave3" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="usu_clave4" javaTypeName="java.lang.String" />
+				<column-attribute-mapping attribute="usu_int_fallidos" javaTypeName="java.lang.Long" />
+				<column-attribute-mapping attribute="usu_clave" javaTypeName="java.lang.String" />
+			</output-parameter>
+		</statement-call>
+	</jdbc-transaction>	
+	
+	<jdbc-transaction name="SECURITY_UPDATE_USER"
+		dataSourceFactoryName="BDSECURITY" autoCommit="true">
+		<statement-call statement="sp_UpdUsuario">
+			<input-parameter name="pi_usu_d_user" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_habilitado" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_estado" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_ult_acceso" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_hora_acceso" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave1" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave2" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave3" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave4" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_int_fallidos" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_usu_clave" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>	
+	
+	<jdbc-transaction name="SECURITY_UPDATE_PASSWORD"
+		dataSourceFactoryName="BDSECURITY" autoCommit="true">
+		<statement-call statement="sp_UpdClaveUsuario">	
+			<input-parameter name="pi_usu_d_user" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave1" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave2" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave3" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave4" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>	
+	
+	<jdbc-transaction name="SECURITY_SAVE_USER"
+		dataSourceFactoryName="BDSECURITY" autoCommit="true">
+		<statement-call statement="sp_GuardarUsuario">
+			<input-parameter name="pi_usu_d_user" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_habilitado" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_estado" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave1" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave2" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave3" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_clave4" sqlTypeName="VARCHAR" />
+			<input-parameter name="pi_usu_int_fallidos" sqlTypeName="NUMERIC" />
+			<input-parameter name="pi_usu_clave" sqlTypeName="VARCHAR" />
+			<output-parameter name="po_c_error" sqlTypeName="NUMERIC" javaTypeName="java.lang.Integer" />
+			<output-parameter name="po_d_error" sqlTypeName="LONGVARCHAR" javaTypeName="java.lang.String" />
+		</statement-call>
+	</jdbc-transaction>	
+	
+</transaction-list>
